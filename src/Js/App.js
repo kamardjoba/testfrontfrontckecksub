@@ -142,7 +142,7 @@ function App() {
       if (response.status === 200) {
         setCoins(response.data.coins);
 
-        if (subscriptionCoins === 1000) {
+        if (response.data.isSubscribed) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
@@ -150,20 +150,21 @@ function App() {
           localStorage.setItem('Knopka', 'true');
         }
 
-        if (subscriptionCoins2 === 750) {
+        if (response.data.isSubscribed2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
         } else {
           localStorage.setItem('Galka2', 'false');
           localStorage.setItem('Knopka2', 'true');
         }
+
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
       }
     } catch (error) {
       console.error('Ошибка при проверке подписки:', error);
     }
-  }, [subscriptionCoins, subscriptionCoins2]);
+  }, []);
 
   useEffect(() => {
     if (userId) {
@@ -200,7 +201,7 @@ function App() {
           setVisibleInvite(true);
         }
 
-        if (subscriptionCoins === 1000) {
+        if (response.data.isSubscribed) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
@@ -208,13 +209,14 @@ function App() {
           localStorage.setItem('Knopka', 'true');
         }
 
-        if (subscriptionCoins2 === 750) {
+        if (response.data.isSubscribed2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
         } else {
           localStorage.setItem('Galka2', 'false');
           localStorage.setItem('Knopka2', 'true');
         }
+        
   
         setAccountAgeCoins(accountAgeCoins);
   
@@ -232,7 +234,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium, referralCoins, subscriptionCoins, subscriptionCoins2]);
+  }, [hasTelegramPremium, referralCoins]);
   
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
@@ -242,7 +244,7 @@ function App() {
         setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
         setSubscriptionCoins2(response.data.isSubscribed2 ? 750 : 0);
 
-        if (subscriptionCoins === 1000) {
+        if (response.data.isSubscribed) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
@@ -250,7 +252,7 @@ function App() {
           localStorage.setItem('Knopka', 'true');
         }
 
-        if (subscriptionCoins2 === 750) {
+        if (response.data.isSubscribed2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
         } else {
@@ -314,6 +316,7 @@ function App() {
     window.open(TG_CHANNEL_LINK1, '_blank');
     setTimeout(() => {
       checkSubscriptionAndUpdate(userId);
+      
     }, 3000);
   };
 
