@@ -209,13 +209,18 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
         setSubscriptionCoins2(response.data.isSubscribed2 ? 750 : 0);
-
+        if (typeof response.data.isSubscribed2 !== 'undefined') {
+          
           localStorage.setItem('Galka', response.data.isSubscribed2 ? 'true' : 'false');
           localStorage.setItem('Knopka', response.data.isSubscribed2 ? 'false' : 'true');
 
           localStorage.setItem('Galka2', response.data.isSubscribed2 ? 'true' : 'false');
           localStorage.setItem('Knopka2', response.data.isSubscribed2 ? 'false' : 'true');
 
+        } else {
+          console.error('response.data.isSubscribed2 is undefined');
+        }
+          
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
