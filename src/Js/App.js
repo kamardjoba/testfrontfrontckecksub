@@ -145,21 +145,17 @@ function App() {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins(1000);
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins(0);
         }
   
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
         } else {
           localStorage.setItem('Galka2', 'false');
           localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
         }
         setCoins(response.data.coins);
       } else {
@@ -234,21 +230,17 @@ function App() {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins(1000);
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins(0);
         }
   
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
         } else {
           localStorage.setItem('Galka2', 'false');
           localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
         }
 
       } else {
