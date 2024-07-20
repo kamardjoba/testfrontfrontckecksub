@@ -225,6 +225,13 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.hasCheckedSubscription ? 1000 : 0);
         setSubscriptionCoins2(response.data.hasCheckedSubscription2 ? 750 : 0);
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
