@@ -93,7 +93,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        if (data.hasCheckedSubscription) {
+        if (data.subscriptions) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
@@ -223,15 +223,8 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       if (response.status === 200) {
         setCoins(response.data.coins);
-        setSubscriptionCoins(response.data.hasCheckedSubscription ? 1000 : 0);
-        setSubscriptionCoins2(response.data.hasCheckedSubscription2 ? 750 : 0);
-        if (response.data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-        }
+        setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
+        setSubscriptionCoins2(response.data.subscriptions ? 750 : 0);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
