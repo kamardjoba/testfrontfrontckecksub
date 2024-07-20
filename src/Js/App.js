@@ -152,8 +152,8 @@ function App() {
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
-  const TG_CHANNEL_LINK = "https://t.me/octies_channel";
-  const TG_CHANNEL_LINK1 = "https://t.me/octies_channel";
+  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
+  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
 
   const fetchUserData = useCallback(async (userId) => {
     try {
