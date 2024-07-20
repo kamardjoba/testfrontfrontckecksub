@@ -141,6 +141,21 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       if (response.status === 200) {
         setCoins(response.data.coins);
+        if (response.data.isSubscribed) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
+
+        if (response.data.isSubscribed2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+        }
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
       }
@@ -175,6 +190,22 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
+
+        if (response.data.isSubscribed) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
+
+        if (response.data.isSubscribed2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+        }
 
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
@@ -266,20 +297,6 @@ function App() {
       console.error('userId не найден в URL');
     }
   }, [fetchUserData, checkSubscription]);
-
-  // const checkSubscriptionAndUpdate = async (userId) => {
-  //   try {
-  //     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-  //     if (response.status === 200) {
-  //       setCoins(response.data.coins);
-  //       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
-  //     } else {
-  //       console.error('Ошибка при проверке подписки:', response.data.error);
-  //     }
-  //   } catch (error) {
-  //     console.error('Ошибка при проверке подписки:', error);
-  //   }
-  // };
 
   const Tg_Channel_Open_chek = () => {
     const userId = new URLSearchParams(window.location.search).get('userId');
