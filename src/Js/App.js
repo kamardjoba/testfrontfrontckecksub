@@ -211,8 +211,8 @@ function App() {
         setSubscriptionCoins2(response.data.isSubscribed2 ? 750 : 0);
         if (typeof response.data.isSubscribed2 !== 'undefined') {
           
-          localStorage.setItem('Galka', response.data.isSubscribed2 ? 'true' : 'false');
-          localStorage.setItem('Knopka', response.data.isSubscribed2 ? 'false' : 'true');
+          localStorage.setItem('Galka', response.data.isSubscribed ? 'true' : 'false');
+          localStorage.setItem('Knopka', response.data.isSubscribed ? 'false' : 'true');
 
           localStorage.setItem('Galka2', response.data.isSubscribed2 ? 'true' : 'false');
           localStorage.setItem('Knopka2', response.data.isSubscribed2 ? 'false' : 'true');
