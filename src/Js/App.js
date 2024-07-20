@@ -141,6 +141,22 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       if (response.status === 200) {
         setCoins(response.data.coins);
+
+        if (subscriptionCoins === 1000) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
+
+        if (subscriptionCoins2 === 750) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+        }
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
       }
@@ -182,6 +198,22 @@ function App() {
   
         if (referralCoins > 0) {
           setVisibleInvite(true);
+        }
+
+        if (subscriptionCoins === 1000) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
+
+        if (subscriptionCoins2 === 750) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
         }
   
         setAccountAgeCoins(accountAgeCoins);
