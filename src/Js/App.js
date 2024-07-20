@@ -225,7 +225,7 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.hasCheckedSubscription ? 1000 : 0);
         setSubscriptionCoins2(response.data.hasCheckedSubscription2 ? 750 : 0);
-        if (data.hasCheckedSubscription) {
+        if (response.data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
