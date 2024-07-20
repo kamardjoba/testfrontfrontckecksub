@@ -150,13 +150,6 @@ function App() {
           localStorage.setItem('Knopka', 'true');
         }
   
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-        }
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -192,7 +185,15 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
-  
+        
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
+
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
@@ -234,14 +235,6 @@ function App() {
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-        }
-  
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
         }
 
       } else {
