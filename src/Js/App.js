@@ -163,7 +163,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при проверке подписки:', error);
     }
-  }, []);
+  }, [subscriptionCoins, subscriptionCoins2]);
 
   useEffect(() => {
     if (userId) {
@@ -232,7 +232,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium, referralCoins]);
+  }, [hasTelegramPremium, referralCoins, subscriptionCoins, subscriptionCoins2]);
   
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
