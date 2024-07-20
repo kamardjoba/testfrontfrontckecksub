@@ -93,7 +93,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        if (data.isSubscribed) {
+        if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
