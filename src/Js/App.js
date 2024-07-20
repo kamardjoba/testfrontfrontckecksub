@@ -222,6 +222,7 @@ function App() {
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+      const data = response.data;
       if (response.status === 200) {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
