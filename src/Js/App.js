@@ -30,54 +30,6 @@ const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.a
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
-
-  if (!localStorage.getItem('Galka')) {
-    localStorage.setItem('Galka', 'false');
-  }
-  const Galo4ka = localStorage.getItem('Galka') === 'true';
-
-  if (!localStorage.getItem('Galka2')) {
-    localStorage.setItem('Galka2', 'false');
-  }
-  const Galo4ka2 = localStorage.getItem('Galka2') === 'true';
-
-  if (!localStorage.getItem('Knopka')) {
-    localStorage.setItem('Knopka', 'true');
-  }
-  const Knopka = localStorage.getItem('Knopka') === 'true';
-
-  if (!localStorage.getItem('Knopka2')) {
-    localStorage.setItem('Knopka2', 'true');
-  }
-  const Knopka2 = localStorage.getItem('Knopka2') === 'true';
-
-  const [coinOnlyYears, setcoinOnlyYears] = useState(0);
-  const [VisibleInvite, setVisibleInvite] = useState(false);
-  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
-  const [coins, setCoins] = useState(0);
-  const [referralCoins, setReferralCoins] = useState(0);
-  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
-  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
-  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-  const [subscriptionCoins2, setSubscriptionCoins2] = useState(0);
-  const [referralCode, setReferralCode] = useState('');
-  const [telegramLink, setTelegramLink] = useState('');
-  const coinmain = coins - referralCoins;
-
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
-  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
-  const [CheckOpen, setCheckOpen] = useState(false);
-  const [YearsOpen, setYearsOpen] = useState(false);
-  const [OctOpen, setOctOpen] = useState(false);
-  const [Yearr, setYearr] = useState(0);
-
-  const [FriendsAnim, setFriendsAnim] = useState(false);
-  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
-  const [app, setApp] = useState(false);
-  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
-  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
-
   const [isFirstBlockVisible, setIsFirstBlockVisible] = useState(false);
   const [isSecondBlockVisible, setIsSecondBlockVisible] = useState(false);
 
@@ -139,7 +91,15 @@ function App() {
     if (!userId) return;
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+      const data = response.data;
       if (response.status === 200) {
+        if (data.isSubscribed) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+        }
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -159,6 +119,42 @@ function App() {
     }
   }, [checkSubscription]);
 
+  if (!localStorage.getItem('Galka')) {
+    localStorage.setItem('Galka', 'false');
+  }
+  const Galo4ka = localStorage.getItem('Galka') === 'true';
+  if (!localStorage.getItem('Knopka')) {
+    localStorage.setItem('Knopka', 'true');
+  }
+  const Knopka = localStorage.getItem('Knopka') === 'true';
+
+  const [coinOnlyYears, setcoinOnlyYears] = useState(0);
+  const [VisibleInvite, setVisibleInvite] = useState(false);
+  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
+  const [coins, setCoins] = useState(0);
+  const [referralCoins, setReferralCoins] = useState(0);
+  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
+  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
+  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
+  const [subscriptionCoins2, setSubscriptionCoins2] = useState(0);
+  const [referralCode, setReferralCode] = useState('');
+  const [telegramLink, setTelegramLink] = useState('');
+  const coinmain = coins - referralCoins;
+
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
+  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
+  const [CheckOpen, setCheckOpen] = useState(false);
+  const [YearsOpen, setYearsOpen] = useState(false);
+  const [OctOpen, setOctOpen] = useState(false);
+  const [Yearr, setYearr] = useState(0);
+
+  const [FriendsAnim, setFriendsAnim] = useState(false);
+  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
+  const [app, setApp] = useState(false);
+  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
+  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
+
   const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
@@ -175,7 +171,27 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
-
+  
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+  
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+          setSubscriptionCoins2(750);
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+          setSubscriptionCoins2(0);
+        }
+  
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
@@ -209,18 +225,6 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
         setSubscriptionCoins2(response.data.isSubscribed2 ? 750 : 0);
-        if (typeof response.data.isSubscribed2 !== 'undefined') {
-          
-          localStorage.setItem('Galka', response.data.isSubscribed ? 'true' : 'false');
-          localStorage.setItem('Knopka', response.data.isSubscribed ? 'false' : 'true');
-
-          localStorage.setItem('Galka2', response.data.isSubscribed2 ? 'true' : 'false');
-          localStorage.setItem('Knopka2', response.data.isSubscribed2 ? 'false' : 'true');
-
-        } else {
-          console.error('response.data.isSubscribed2 is undefined');
-        }
-          
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
@@ -262,6 +266,20 @@ function App() {
     }
   }, [fetchUserData, checkSubscription]);
 
+  // const checkSubscriptionAndUpdate = async (userId) => {
+  //   try {
+  //     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+  //     if (response.status === 200) {
+  //       setCoins(response.data.coins);
+  //       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+  //     } else {
+  //       console.error('Ошибка при проверке подписки:', response.data.error);
+  //     }
+  //   } catch (error) {
+  //     console.error('Ошибка при проверке подписки:', error);
+  //   }
+  // };
+
   const Tg_Channel_Open_chek = () => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -277,7 +295,6 @@ function App() {
     window.open(TG_CHANNEL_LINK1, '_blank');
     setTimeout(() => {
       checkSubscriptionAndUpdate(userId);
-      
     }, 3000);
   };
 
@@ -353,9 +370,8 @@ function App() {
               <p id='up'>CryptoSpace</p>
               <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
               <div className='MenuBtn'>
-                {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
-                <p> {Knopka2 && <p id="plus">+</p>} 750 OCTIES</p>
-                {Galo4ka2  && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />
+                <p>+ 750 OCTIES</p>
               </div>
             </div>
           </div>
@@ -396,7 +412,7 @@ function App() {
             </div>
           </div>}
 
-          {Galo4ka2 && <div className='TS'>
+          {localStorage.getItem('Galka2') === 'true' && <div className='TS'>
           <div className='tsPhoto'>
             <img src={TS3} alt='TS3' /> <p id='txt'>CryptoSpace Subscription</p>
           </div>
