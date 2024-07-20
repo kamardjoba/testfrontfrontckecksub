@@ -141,21 +141,6 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       if (response.status === 200) {
         setCoins(response.data.coins);
-        if (response.data.isSubscribed) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-        }
-
-        if (response.data.isSubscribed2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-        }
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
       }
@@ -191,22 +176,6 @@ function App() {
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
 
-        if (response.data.isSubscribed) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-        }
-
-        if (response.data.isSubscribed2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-        }
-
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
@@ -241,7 +210,7 @@ function App() {
         setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
         setSubscriptionCoins2(response.data.isSubscribed2 ? 750 : 0);
 
-        if (response.data.isSubscribed) {
+        if (subscriptionCoins === 1000) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
@@ -249,7 +218,7 @@ function App() {
           localStorage.setItem('Knopka', 'true');
         }
 
-        if (response.data.isSubscribed2) {
+        if (subscriptionCoins2 === 750) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
         } else {
