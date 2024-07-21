@@ -139,8 +139,28 @@ function App() {
     if (!userId) return;
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      const data = response.data;
       if (response.status === 200) {
+        const data = response.data;
+
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+          setSubscriptionCoins(750);
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+          setSubscriptionCoins(0);
+        }
+
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins2(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins2(0);
+        }
         setCoins(data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -184,22 +204,6 @@ function App() {
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
-
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-        }
-
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-        }
   
         setAccountAgeCoins(accountAgeCoins);
   
@@ -226,6 +230,27 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
         setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
+        const data = response.data;
+
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+          setSubscriptionCoins(750);
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+          setSubscriptionCoins(0);
+        }
+
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins2(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins2(0);
+        }
 
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
