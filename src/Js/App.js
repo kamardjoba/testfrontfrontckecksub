@@ -198,6 +198,16 @@ function App() {
           setSubscriptionCoins2(0);
         }
 
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins2(750);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins2(0);
+        }
+
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
