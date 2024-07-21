@@ -209,7 +209,7 @@ function App() {
       if (response.status === 200) {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
-        setSubscriptionCoins2(response.data.subscriptions ? 750 : 0);
+        setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
 
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('Galka2', 'true');
@@ -230,7 +230,7 @@ function App() {
           localStorage.setItem('Knopka', 'true');
           setSubscriptionCoins2(0);
         }
-        
+
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
