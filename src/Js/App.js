@@ -184,21 +184,21 @@ function App() {
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins(750);
+          setSubscriptionCoins2(750);
         } else {
           localStorage.setItem('Galka2', 'false');
           localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins(0);
+          setSubscriptionCoins2(0);
         }
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins2(1000);
+          setSubscriptionCoins(1000);
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins2(0);
+          setSubscriptionCoins(0);
         }
 
         if (hasTelegramPremium === true) {
@@ -233,17 +233,17 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
-        setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
+        //setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
+        //setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins2(1000);
+          setSubscriptionCoins(1000);
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins2(0);
+          setSubscriptionCoins(0);
         }
 
       } else {
