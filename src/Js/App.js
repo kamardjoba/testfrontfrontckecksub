@@ -238,8 +238,6 @@ function App() {
     }
   };
 
-  
-
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
@@ -363,7 +361,7 @@ function App() {
               <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
               <div className='MenuBtn'>
                 {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
-                <p> {Knopka && <p id="plus">+</p>} 750 OCTIES</p>
+                <p> {Knopka2 && <p id="plus">+</p>} 750 OCTIES</p>
                 {Galo4ka2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
