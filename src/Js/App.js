@@ -113,7 +113,7 @@ function App() {
           localStorage.setItem('Knopka2', 'true');
           setSubscriptionCoins2(0);
         }
-        
+
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -425,7 +425,7 @@ function App() {
             </div>
           </div>}
 
-          {localStorage.getItem('Galka2') === 'true' && <div className='TS'>
+          {Galo4ka2 && <div className='TS'>
           <div className='tsPhoto'>
             <img src={TS3} alt='TS3' /> <p id='txt'>CryptoSpace Subscription</p>
           </div>
