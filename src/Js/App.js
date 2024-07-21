@@ -77,7 +77,7 @@ function App() {
   const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
   const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
 
-  
+
   const [isFirstBlockVisible, setIsFirstBlockVisible] = useState(false);
   const [isSecondBlockVisible, setIsSecondBlockVisible] = useState(false);
 
@@ -139,8 +139,18 @@ function App() {
     if (!userId) return;
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      //const data = response.data;
+      const data = response.data;
       if (response.status === 200) {
+        
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -176,16 +186,6 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
-  
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins(1000);
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins(0);
-        }
   
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('Galka2', 'true');
