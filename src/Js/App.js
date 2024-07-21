@@ -143,6 +143,16 @@ function App() {
         const data = response.data;
         setCoins(data.coins);
 
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+          setSubscriptionCoins2(750);
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+          setSubscriptionCoins2(0);
+        }
+
        
 
       } else {
@@ -235,15 +245,6 @@ function App() {
         const data = response.data;
         setCoins(data.coins);
 
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
