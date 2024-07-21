@@ -141,18 +141,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins2(0);
-        }
-  
-
-        setCoins(response.data.coins);
+        setCoins(data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
       }
