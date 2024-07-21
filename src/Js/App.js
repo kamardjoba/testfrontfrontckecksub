@@ -177,6 +177,26 @@ function App() {
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
 
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka2', 'true');
+          localStorage.setItem('Knopka2', 'false');
+          setSubscriptionCoins(750);
+        } else {
+          localStorage.setItem('Galka2', 'false');
+          localStorage.setItem('Knopka2', 'true');
+          setSubscriptionCoins(0);
+        }
+
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins2(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins2(0);
+        }
+
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
@@ -210,27 +230,6 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
         setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
-        const data = response.data;
-
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins(0);
-        }
-
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins2(1000);
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins2(0);
-        }
 
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
