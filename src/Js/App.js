@@ -93,13 +93,6 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        if (data.subscriptions) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-        }
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -123,10 +116,21 @@ function App() {
     localStorage.setItem('Galka', 'false');
   }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
+
+  if (!localStorage.getItem('Galka2')) {
+    localStorage.setItem('Galka2', 'false');
+  }
+  const Galo4ka2 = localStorage.getItem('Galka') === 'true';
+
   if (!localStorage.getItem('Knopka')) {
     localStorage.setItem('Knopka', 'true');
   }
   const Knopka = localStorage.getItem('Knopka') === 'true';
+
+  if (!localStorage.getItem('Knopka2')) {
+    localStorage.setItem('Knopka2', 'true');
+  }
+  const Knopka2 = localStorage.getItem('Knopka2') === 'true';
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
@@ -233,6 +237,7 @@ function App() {
     }
   };
   
+  
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -265,20 +270,6 @@ function App() {
       console.error('userId не найден в URL');
     }
   }, [fetchUserData, checkSubscription]);
-
-  // const checkSubscriptionAndUpdate = async (userId) => {
-  //   try {
-  //     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-  //     if (response.status === 200) {
-  //       setCoins(response.data.coins);
-  //       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
-  //     } else {
-  //       console.error('Ошибка при проверке подписки:', response.data.error);
-  //     }
-  //   } catch (error) {
-  //     console.error('Ошибка при проверке подписки:', error);
-  //   }
-  // };
 
   const Tg_Channel_Open_chek = () => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -370,8 +361,9 @@ function App() {
               <p id='up'>CryptoSpace</p>
               <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
               <div className='MenuBtn'>
-                <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />
-                <p>+ 750 OCTIES</p>
+                {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
+                <p> {Knopka && <p id="plus">+</p>} 750 OCTIES</p>
+                {Galo4ka2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
           </div>
