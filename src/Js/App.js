@@ -139,18 +139,8 @@ function App() {
     if (!userId) return;
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      const data = response.data;
+      //const data = response.data;
       if (response.status === 200) {
-        
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins(1000);
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins(0);
-        }
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -164,11 +154,12 @@ function App() {
     if (userId) {
       const intervalId = setInterval(() => {
         checkSubscription();
+        fetchUserData();
       }, 3000);
 
       return () => clearInterval(intervalId);
     }
-  }, [checkSubscription]);
+  }, [checkSubscription, fetchUserData]);
 
   const fetchUserData = useCallback(async (userId) => {
     try {
