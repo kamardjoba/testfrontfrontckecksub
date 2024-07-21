@@ -210,8 +210,9 @@ function App() {
         setCoins(response.data.coins);
         setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
         setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
+        const data = response.data;
 
-        if (response.data.subscriptions2 ) {
+        if (data.hasCheckedSubscription2) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
         } else {
@@ -219,7 +220,7 @@ function App() {
           localStorage.setItem('Knopka2', 'true');
         }
 
-        if (response.data.subscriptions) {
+        if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         } else {
