@@ -139,8 +139,19 @@ function App() {
     if (!userId) return;
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      //const data = response.data;
+      const data = response.data;
       if (response.status === 200) {
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins2(750);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins2(0);
+        }
+  
+
         setCoins(response.data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -154,12 +165,11 @@ function App() {
     if (userId) {
       const intervalId = setInterval(() => {
         checkSubscription();
-        fetchUserData();
       }, 3000);
 
       return () => clearInterval(intervalId);
     }
-  }, [checkSubscription, fetchUserData]);
+  }, [checkSubscription]);
 
   const fetchUserData = useCallback(async (userId) => {
     try {
@@ -188,16 +198,6 @@ function App() {
           setSubscriptionCoins2(0);
         }
 
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins2(0);
-        }
-  
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
