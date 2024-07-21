@@ -141,7 +141,7 @@ function App() {
   if (!localStorage.getItem('Galka2')) {
     localStorage.setItem('Galka2', 'false');
   }
-  const Galo4ka2 = localStorage.getItem('Galka') === 'true';
+  const Galo4ka2 = localStorage.getItem('Galka2') === 'true';
 
   if (!localStorage.getItem('Knopka')) {
     localStorage.setItem('Knopka', 'true');
