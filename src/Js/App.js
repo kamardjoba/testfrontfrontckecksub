@@ -211,7 +211,7 @@ function App() {
         setSubscriptionCoins(response.data.subscriptions ? 1000 : 0);
         setSubscriptionCoins2(response.data.subscriptions2 ? 750 : 0);
 
-        if (data.hasCheckedSubscription2) {
+        if (response.data.subscriptions2 ) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
           setSubscriptionCoins2(750);
@@ -221,7 +221,7 @@ function App() {
           setSubscriptionCoins2(0);
         }
 
-        if (data.hasCheckedSubscription) {
+        if (response.data.subscriptions) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
           setSubscriptionCoins2(750);
