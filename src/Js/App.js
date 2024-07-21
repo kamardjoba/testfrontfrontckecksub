@@ -30,6 +30,54 @@ const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.a
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
+  if (!localStorage.getItem('Galka')) {
+    localStorage.setItem('Galka', 'false');
+  }
+  const Galo4ka = localStorage.getItem('Galka') === 'true';
+
+  if (!localStorage.getItem('Galka2')) {
+    localStorage.setItem('Galka2', 'false');
+  }
+  const Galo4ka2 = localStorage.getItem('Galka2') === 'true';
+
+  if (!localStorage.getItem('Knopka')) {
+    localStorage.setItem('Knopka', 'true');
+  }
+  const Knopka = localStorage.getItem('Knopka') === 'true';
+
+  if (!localStorage.getItem('Knopka2')) {
+    localStorage.setItem('Knopka2', 'true');
+  }
+  const Knopka2 = localStorage.getItem('Knopka2') === 'true';
+
+  const [coinOnlyYears, setcoinOnlyYears] = useState(0);
+  const [VisibleInvite, setVisibleInvite] = useState(false);
+  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
+  const [coins, setCoins] = useState(0);
+  const [referralCoins, setReferralCoins] = useState(0);
+  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
+  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
+  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
+  const [subscriptionCoins2, setSubscriptionCoins2] = useState(0);
+  const [referralCode, setReferralCode] = useState('');
+  const [telegramLink, setTelegramLink] = useState('');
+  const coinmain = coins - referralCoins;
+
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
+  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
+  const [CheckOpen, setCheckOpen] = useState(false);
+  const [YearsOpen, setYearsOpen] = useState(false);
+  const [OctOpen, setOctOpen] = useState(false);
+  const [Yearr, setYearr] = useState(0);
+
+  const [FriendsAnim, setFriendsAnim] = useState(false);
+  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
+  const [app, setApp] = useState(false);
+  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
+  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
+
+  
   const [isFirstBlockVisible, setIsFirstBlockVisible] = useState(false);
   const [isSecondBlockVisible, setIsSecondBlockVisible] = useState(false);
 
@@ -111,53 +159,6 @@ function App() {
       return () => clearInterval(intervalId);
     }
   }, [checkSubscription]);
-
-  if (!localStorage.getItem('Galka')) {
-    localStorage.setItem('Galka', 'false');
-  }
-  const Galo4ka = localStorage.getItem('Galka') === 'true';
-
-  if (!localStorage.getItem('Galka2')) {
-    localStorage.setItem('Galka2', 'false');
-  }
-  const Galo4ka2 = localStorage.getItem('Galka2') === 'true';
-
-  if (!localStorage.getItem('Knopka')) {
-    localStorage.setItem('Knopka', 'true');
-  }
-  const Knopka = localStorage.getItem('Knopka') === 'true';
-
-  if (!localStorage.getItem('Knopka2')) {
-    localStorage.setItem('Knopka2', 'true');
-  }
-  const Knopka2 = localStorage.getItem('Knopka2') === 'true';
-
-  const [coinOnlyYears, setcoinOnlyYears] = useState(0);
-  const [VisibleInvite, setVisibleInvite] = useState(false);
-  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
-  const [coins, setCoins] = useState(0);
-  const [referralCoins, setReferralCoins] = useState(0);
-  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
-  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
-  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-  const [subscriptionCoins2, setSubscriptionCoins2] = useState(0);
-  const [referralCode, setReferralCode] = useState('');
-  const [telegramLink, setTelegramLink] = useState('');
-  const coinmain = coins - referralCoins;
-
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
-  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
-  const [CheckOpen, setCheckOpen] = useState(false);
-  const [YearsOpen, setYearsOpen] = useState(false);
-  const [OctOpen, setOctOpen] = useState(false);
-  const [Yearr, setYearr] = useState(0);
-
-  const [FriendsAnim, setFriendsAnim] = useState(false);
-  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
-  const [app, setApp] = useState(false);
-  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
-  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
 
   const fetchUserData = useCallback(async (userId) => {
     try {
