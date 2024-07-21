@@ -214,21 +214,17 @@ function App() {
         if (response.data.subscriptions2 ) {
           localStorage.setItem('Galka2', 'true');
           localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
         } else {
           localStorage.setItem('Galka2', 'false');
           localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
         }
 
         if (response.data.subscriptions) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setSubscriptionCoins2(750);
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setSubscriptionCoins2(0);
         }
 
       } else {
