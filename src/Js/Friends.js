@@ -5,6 +5,8 @@ import axios from 'axios';
 const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
+    const userId = new URLSearchParams(window.location.search).get('userId'); // Получаем userId из URL
+
 
     useEffect(() => {
         const fetchReferredUsers = async () => {
