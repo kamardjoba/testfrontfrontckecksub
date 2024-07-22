@@ -132,7 +132,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-
 }
 
 #Cryptospace{
@@ -146,6 +145,7 @@ body {
   white-space: nowrap;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .MenuBorder p{margin-left: 2vh;}
