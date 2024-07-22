@@ -19,28 +19,10 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
         fetchReferredUsers();
     }, [referralCode]);
 
-    const handleShareLink = async () => {
+    const handleShareLink = () => {
         const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
-
-        // Параметры для сообщения
-        const messageText = 'Meow, lets see who is OG 🐱';
-        const imageUrl = 'https://example.com/your-image.png'; // Замените на ваш URL изображения
-
-        console.log('handleShareLink вызвана');
-        console.log('telegramUrl:', telegramUrl);
-
-        try {
-            const response = await axios.post(`${REACT_APP_BACKEND_URL}/send-referral-message`, {
-                telegramUrl,
-                messageText,
-                imageUrl
-            });
-            console.log('Запрос успешно отправлен:', response.data);
-            window.open(telegramUrl, '_blank');
-            window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-        } catch (error) {
-            console.error('Ошибка при отправке реферального сообщения:', error);
-        }
+        window.open(telegramUrl, '_blank');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
 
     const getRandomColor = () => {
@@ -96,6 +78,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
                         </div>
                     </div>
                 ))}
+
             </div>
         </div>
     );
