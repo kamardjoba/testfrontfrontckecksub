@@ -31,7 +31,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
-                <p>Invite friends <br/> and get more OCTIES</p>
+                <p>Invite friends <br/> and get more $OCTIES</p>
             </div>
             <div className='Fr_Main'>
                 <img src={invite} alt='invite'/>
