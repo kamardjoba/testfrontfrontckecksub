@@ -290,10 +290,13 @@ function App() {
   };
 
   const Tg_Channel_Open_X = () => {
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    localStorage.setItem('KnopkaX', 'false');
-    localStorage.setItem('GalkaX', 'true');
-  };
+    setTimeout(() => {
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+        localStorage.setItem('KnopkaX', 'false');
+        localStorage.setItem('GalkaX', 'true');
+    }, 5000);
+};
+
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
