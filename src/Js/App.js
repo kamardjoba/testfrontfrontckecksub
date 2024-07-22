@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import '../Css/App.css'; 
+import '../Css/App.css';
 import axios from 'axios';
 
 import Friends from './Friends';
@@ -76,44 +76,47 @@ function App() {
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
   const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
+  const TG_CHANNEL_LINK3 = "https://t.me/test_sub_check3";
 
-
-  const [isFirstBlockVisible, setIsFirstBlockVisible] = useState(false);
-  const [isSecondBlockVisible, setIsSecondBlockVisible] = useState(false);
-
-  const firstBlockRef = useRef(null);
-  const secondBlockRef = useRef(null);
+  const blockRefs = [useRef(null), useRef(null), useRef(null)];
+  const [blockVisibility, setBlockVisibility] = useState([false, false, false]);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5, 
+      threshold: 0.5,
     };
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
-        if (entry.target === firstBlockRef.current) {
-          setIsFirstBlockVisible(entry.isIntersecting);
-        } else if (entry.target === secondBlockRef.current) {
-          setIsSecondBlockVisible(entry.isIntersecting);
+        const index = blockRefs.findIndex(ref => ref.current === entry.target);
+        if (index !== -1) {
+          setBlockVisibility(prevVisibility => {
+            const newVisibility = [...prevVisibility];
+            newVisibility[index] = entry.isIntersecting;
+            return newVisibility;
+          });
         }
       });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const currentFirstBlockRef = firstBlockRef.current;
-    const currentSecondBlockRef = secondBlockRef.current;
-
-    if (currentFirstBlockRef) observer.observe(currentFirstBlockRef);
-    if (currentSecondBlockRef) observer.observe(currentSecondBlockRef);
+    blockRefs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
 
     return () => {
-      if (currentFirstBlockRef) observer.unobserve(currentFirstBlockRef);
-      if (currentSecondBlockRef) observer.unobserve(currentSecondBlockRef);
+      blockRefs.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
     };
-  }, []);
+  }, [blockRefs]);
 
   function handleHomeWithVibration() {
     handleHome();
@@ -326,6 +329,15 @@ function App() {
     }, 3000);
   };
 
+  const Tg_Channel_Open_chek2 = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK3, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -381,7 +393,7 @@ function App() {
       <div className='Menu'>
         <div className='Skroll_Menu_Border'>
 
-          <div className='MenuBorder' ref={firstBlockRef}>
+          <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border'>
               <p id='up'>OCTIES COMMUNITY</p>
               <p id='dp'>Home for Telegram OCs</p>
@@ -393,7 +405,7 @@ function App() {
             </div>
           </div>
 
-          <div className='MenuBorder' ref={secondBlockRef}>
+          <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border' id='Cryptospace'>
               <p id='up'>CryptoSpace</p>
               <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
@@ -405,11 +417,23 @@ function App() {
             </div>
           </div>
 
+          <div className='MenuBorder' ref={blockRefs[2]}>
+            <div className='flex_menu_border' id='ThirdBlock'>
+              <p id='up'>THIRD BLOCK</p>
+              <p id='dp'>Description for the third block</p>
+              <div className='MenuBtn'>
+                <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />
+                <p>+ 500 OCTIES</p>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div className='Reward'>
           <div className='EllipsSkroll'>
-            <img src={Ellipse} alt='Ellips' className={isFirstBlockVisible ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={isSecondBlockVisible ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[0] ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[1] ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
           </div>
           <p>Your Rewards</p>
         </div>
