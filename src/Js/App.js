@@ -81,15 +81,6 @@ function App() {
   const blockRefs = [useRef(null), useRef(null), useRef(null)];
   const [blockVisibility, setBlockVisibility] = useState([false, false, false]);
 
-  const getRandomColor = useCallback(() => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }, []);
-
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -383,6 +374,15 @@ function App() {
     localStorage.setItem('FPage', 'false');
   };
 
+  const getRandomColor = useCallback(() => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }, []);
+  
   return (
     <div className="App">
       {app && <div className='blk'></div>}
@@ -414,7 +414,7 @@ function App() {
             </div>
           </div>
 
-          <div className='MenuBorder' ref={blockRefs[1]}>
+          <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border' id='Cryptospace'>
               <p id='up'>CryptoSpace</p>
               <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
@@ -426,7 +426,7 @@ function App() {
             </div>
           </div>
 
-          <div className='MenuBorder' ref={blockRefs[2]}>
+          <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border' id='ThirdBlock'>
               <p id='up'>THIRD BLOCK</p>
               <p id='dp'>Description for the third block</p>
