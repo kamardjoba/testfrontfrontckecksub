@@ -80,6 +80,7 @@ function App() {
 
   const blockRefs = [useRef(null), useRef(null), useRef(null)];
   const [blockVisibility, setBlockVisibility] = useState([false, false, false]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const observerOptions = {
@@ -117,6 +118,31 @@ function App() {
       });
     };
   }, );
+
+  useEffect(() => {
+    const handleWheel = (event) => {
+      event.preventDefault();
+      if (event.deltaY > 0) {
+        scrollToIndex(currentIndex + 1);
+      } else {
+        scrollToIndex(currentIndex - 1);
+      }
+    };
+
+    const scrollToIndex = (index) => {
+      if (index >= 0 && index < blockRefs.length) {
+        setCurrentIndex(index);
+        blockRefs[index].current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      }
+    };
+
+    const skrollMenuBorder = document.querySelector('.Skroll_Menu_Border');
+    skrollMenuBorder.addEventListener('wheel', handleWheel);
+
+    return () => {
+      skrollMenuBorder.removeEventListener('wheel', handleWheel);
+    };
+  },);
 
   function handleHomeWithVibration() {
     handleHome();
