@@ -414,6 +414,17 @@ function App() {
             </div>
           </div>
 
+          <div className='MenuBorder' ref={blockRefs[1]}>
+            <div className='flex_menu_border' id='ThirdBlock'>
+              <p id='up'>OCTIES X</p>
+              <p id='dp'>Home for X OCs</p>
+              <div className='MenuBtn'>
+                <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />
+                <p>+ 500 OCTIES</p>
+              </div>
+            </div>
+          </div>
+
           <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border' id='Cryptospace'>
               <p id='up'>CryptoSpace</p>
@@ -422,17 +433,6 @@ function App() {
                 {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
                 <p> {Knopka2 && <p id="plus">+</p>} 750 OCTIES</p>
                 {Galo4ka2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
-              </div>
-            </div>
-          </div>
-
-          <div className='MenuBorder' ref={blockRefs[1]}>
-            <div className='flex_menu_border' id='ThirdBlock'>
-              <p id='up'>THIRD BLOCK</p>
-              <p id='dp'>Description for the third block</p>
-              <div className='MenuBtn'>
-                <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />
-                <p>+ 500 OCTIES</p>
               </div>
             </div>
           </div>
