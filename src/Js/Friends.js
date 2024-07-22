@@ -19,11 +19,23 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
         fetchReferredUsers();
     }, [referralCode]);
 
-    const handleShareLink = () => {
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
-        window.open(telegramUrl, '_blank');
-        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    };
+    const handleShareLink = async () => {
+        try {
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral-link`, { userId });
+          const { referralMessage } = response.data;
+      
+          const messageText = referralMessage.text;
+          const inlineKeyboard = referralMessage.reply_markup.inline_keyboard;
+      
+          const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(inlineKeyboard[0][0].url)}&text=${encodeURIComponent(messageText)}`;
+      
+          window.open(telegramUrl, '_blank');
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+        } catch (error) {
+          console.error('Ошибка при генерации реферальной ссылки:', error);
+        }
+      };
+      
 
     const getRandomColor = () => {
         const letters = '0123456789ABCDEF';
