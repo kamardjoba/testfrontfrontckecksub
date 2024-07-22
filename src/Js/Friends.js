@@ -26,12 +26,16 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
         const messageText = 'Meow, lets see who is OG 🐱';
         const imageUrl = 'https://example.com/your-image.png'; // Замените на ваш URL изображения
 
+        console.log('handleShareLink вызвана');
+        console.log('telegramUrl:', telegramUrl);
+
         try {
-            await axios.post(`${REACT_APP_BACKEND_URL}/send-referral-message`, {
+            const response = await axios.post(`${REACT_APP_BACKEND_URL}/send-referral-message`, {
                 telegramUrl,
                 messageText,
                 imageUrl
             });
+            console.log('Запрос успешно отправлен:', response.data);
             window.open(telegramUrl, '_blank');
             window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
         } catch (error) {
@@ -92,7 +96,6 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
                         </div>
                     </div>
                 ))}
-
             </div>
         </div>
     );
