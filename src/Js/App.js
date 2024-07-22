@@ -116,7 +116,7 @@ function App() {
         }
       });
     };
-  }, [blockRefs]);
+  }, );
 
   function handleHomeWithVibration() {
     handleHome();
