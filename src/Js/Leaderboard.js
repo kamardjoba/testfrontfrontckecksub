@@ -6,11 +6,13 @@ import logo from '../IMG/All_Logo/LBoard.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
-const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
+const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
   const [userCount, setUserCount] = useState(0);
   const [userNickname, setUserNickname] = useState('');
+  const [colorsL, setColorsL] = useState([]);
+  const [userColorL, setUserColorL] = useState('');
 
   useEffect(() => {
     const fetchUserCount = async () => {
@@ -33,20 +35,23 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
         const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
         if (response.data.success) {
           setLeaderboard(response.data.leaderboard);
+          const newColorsL = response.data.leaderboard.map(() => getRandomColor());
+          setColorsL(newColorsL);
+          setUserColorL(getRandomColor()); 
         }
       } catch (error) {
         console.error('Ошибка при загрузке лидерборда:', error);
       }
     };
-  
+
     const fetchUserRank = async () => {
       try {
         console.log(`Fetching rank for userId: ${userId}`);
         const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
         if (response.data.success) {
-          console.log('User rank fetched successfully:', response.data.rank); 
+          console.log('User rank fetched successfully:', response.data.rank);
           setUserRank(response.data.rank);
-          setUserNickname(response.data.nickname); 
+          setUserNickname(response.data.nickname);
         } else {
           console.error('Error in response data:', response.data.message);
         }
@@ -61,7 +66,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
     } else {
       console.error('userId не определен');
     }
-  }, [userId]);
+  }, [userId, getRandomColor]);
 
   const getMedal = (index) => {
     switch (index) {
@@ -76,25 +81,16 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
     }
   };
 
-  const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
   return (
-    <div className={`Lb_Window ${LeaderboardAnim? 'fade-out' : ''}`}>
+    <div className={`Lb_Window ${LeaderboardAnim ? 'fade-out' : ''}`}>
       <div className='lb_Info'>
         <p>Telegram Wall of Fame</p>
       </div>
-      
+
       <div className='Lb_Menu'>
         <div className='LbBorder'>
           <div className='Lb_Logo'>
-            <img src={logo} alt='logo'/>
+            <img src={logo} alt='logo' />
           </div>
           <div className='Lb_Text'>
             <p>🥇The 1st holder will get 400,000 OCTIES</p>
@@ -105,29 +101,30 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
 
         <div className='Lb_inside'>
           <div className='LbPhoto'>
-            <div 
+            <div
               style={{
-                backgroundColor: getRandomColor(), 
-                borderRadius: '50%', 
-                aspectRatio: '1', 
-                height: '5.5vh', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
+                backgroundColor: userColorL, // Use the stable color from the state
+                borderRadius: '50%',
+                aspectRatio: '1',
+                height: '5.5vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 fontSize: '2vh',
-                margin:'2vh',  
-                color: 'white'
-              }}>
+                margin: '2vh',
+                color: 'white',
+              }}
+            >
               {userNickname.slice(0, 2).toUpperCase()}
             </div>
-            
+
             <div className='NameLb'>
               <p>{userNickname ? `${userNickname}` : 'Loading...'}</p>
               <p id='LbColor'>{coins} OCTIES</p>
             </div>
           </div>
           <div className='LbPhoto'>
-            <p id="number">{userRank ? `#${userRank}` : '??'}</p>
+            <p id='number'>{userRank ? `#${userRank}` : '??'}</p>
           </div>
         </div>
 
@@ -140,25 +137,26 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
               <div className='LbPhoto'>
                 <div
                   style={{
-                    backgroundColor: getRandomColor(), 
-                    borderRadius: '50%', 
-                    aspectRatio: '1', 
-                    height: '5.5vh', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
+                    backgroundColor: colorsL[index],
+                    borderRadius: '50%',
+                    aspectRatio: '1',
+                    height: '5.5vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     fontSize: '2.5vh',
-                    margin:'2vh', 
-                    color: 'white'
-                  }}>
-                  <p style={{margin: '0'}}>{user.nickname.slice(0, 2).toUpperCase()}</p>
-                </div>  
+                    margin: '2vh',
+                    color: 'white',
+                  }}
+                >
+                  <p style={{ margin: '0' }}>{user.nickname.slice(0, 2).toUpperCase()}</p>
+                </div>
                 <div className='NameLb'>
                   <p> {user.nickname} </p>
                   <p id='LbColor'>{user.coins} OCTIES</p>
                 </div>
               </div>
-              <div className='LbPhoto' id="medal">
+              <div className='LbPhoto' id='medal'>
                 <p>{getMedal(index)}</p>
               </div>
             </div>
@@ -170,3 +168,4 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
 };
 
 export default Leaderboard;
+

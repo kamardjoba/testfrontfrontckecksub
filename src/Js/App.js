@@ -81,6 +81,15 @@ function App() {
   const blockRefs = [useRef(null), useRef(null), useRef(null)];
   const [blockVisibility, setBlockVisibility] = useState([false, false, false]);
 
+  const getRandomColor = useCallback(() => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }, []);
+
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -507,9 +516,9 @@ function App() {
 
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coinmain} />)}
+      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coinmain} getRandomColor={getRandomColor}/>)}
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} />)}
+      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor} />)}
 
     </div>
   );
