@@ -35,20 +35,20 @@ function App() {
   }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
 
-  if (!localStorage.getItem('Galka2')) {
-    localStorage.setItem('Galka2', 'false');
+  if (!localStorage.getItem('GalkaX')) {
+    localStorage.setItem('GalkaX', 'false');
   }
-  const Galo4ka2 = localStorage.getItem('Galka2') === 'true';
+  const Galo4kaX = localStorage.getItem('GalkaX') === 'true';
 
   if (!localStorage.getItem('Knopka')) {
     localStorage.setItem('Knopka', 'true');
   }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
-  if (!localStorage.getItem('Knopka2')) {
-    localStorage.setItem('Knopka2', 'true');
+  if (!localStorage.getItem('KnopkaX')) {
+    localStorage.setItem('KnopkaX', 'true');
   }
-  const Knopka2 = localStorage.getItem('Knopka2') === 'true';
+  const KnopkaX = localStorage.getItem('KnopkaX') === 'true';
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
@@ -58,7 +58,6 @@ function App() {
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-  const [subscriptionCoins2, setSubscriptionCoins2] = useState(0);
   const [referralCode, setReferralCode] = useState('');
   const [telegramLink, setTelegramLink] = useState('');
   const coinmain = coins - referralCoins;
@@ -75,12 +74,9 @@ function App() {
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
-  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
-  const TG_CHANNEL_LINK3 = "https://t.me/test_sub_check3";
 
-  const blockRefs = [useRef(null), useRef(null), useRef(null)];
-  const [blockVisibility, setBlockVisibility] = useState([false, false, false]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const blockRefs = [useRef(null), useRef(null)];
+  const [blockVisibility, setBlockVisibility] = useState([false, false]);
 
   useEffect(() => {
     const observerOptions = {
@@ -119,31 +115,6 @@ function App() {
     };
   }, );
 
-  useEffect(() => {
-    const handleWheel = (event) => {
-      event.preventDefault();
-      if (event.deltaY > 0) {
-        scrollToIndex(currentIndex + 1);
-      } else {
-        scrollToIndex(currentIndex - 1);
-      }
-    };
-
-    const scrollToIndex = (index) => {
-      if (index >= 0 && index < blockRefs.length) {
-        setCurrentIndex(index);
-        blockRefs[index].current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      }
-    };
-
-    const skrollMenuBorder = document.querySelector('.Skroll_Menu_Border');
-    skrollMenuBorder.addEventListener('wheel', handleWheel);
-
-    return () => {
-      skrollMenuBorder.removeEventListener('wheel', handleWheel);
-    };
-  },);
-
   function handleHomeWithVibration() {
     handleHome();
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -171,15 +142,6 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -234,16 +196,6 @@ function App() {
           setVisibleInvite(true);
         }
 
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
-
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -278,15 +230,6 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -346,22 +289,10 @@ function App() {
     }, 3000);
   };
 
-  const Tg_Channel_Open_chek1 = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
+  const Tg_Channel_Open_X = () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(TG_CHANNEL_LINK1, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
-
-  const Tg_Channel_Open_chek2 = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(TG_CHANNEL_LINK3, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
+    localStorage.setItem('KnopkaX', 'false');
+    localStorage.setItem('GalkaX', 'true');
   };
 
   useEffect(() => {
@@ -445,20 +376,9 @@ function App() {
               <p id='up'>OCTIES X</p>
               <p id='dp'>Home for X OCs</p>
               <div className='MenuBtn'>
-                <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />
-                <p>+ 500 $OCTIES</p>
-              </div>
-            </div>
-          </div>
-
-          <div className='MenuBorder' ref={blockRefs[2]}>
-            <div className='flex_menu_border' id='Cryptospace'>
-              <p id='up'>CryptoSpace</p>
-              <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
-              <div className='MenuBtn'>
-                {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
-                <p> {Knopka2 && <p id="plus">+</p>} 750 $OCTIES</p>
-                {Galo4ka2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                <p> {KnopkaX && <p id="plus">+</p>} 500 $OCTIES</p>
+                {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
           </div>
@@ -468,7 +388,6 @@ function App() {
           <div className='EllipsSkroll'>
             <img src={Ellipse} alt='Ellips' className={blockVisibility[0] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[1] ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
           </div>
           <p>Your Rewards</p>
         </div>
@@ -500,12 +419,12 @@ function App() {
             </div>
           </div>}
 
-          {Galo4ka2 && <div className='TS'>
+          {Galo4kaX && <div className='TS'>
           <div className='tsPhoto'>
-            <img src={TS3} alt='TS3' /> <p id='txt'>CryptoSpace Subscription</p>
+            <img src={TS3} alt='TS3' /> <p id='txt'>X Channel Subscription</p>
           </div>
           <div className='tsPhoto'>
-            <p>+{subscriptionCoins2} $OCTIES</p>
+            <p>+ X $OCTIES</p>
           </div>
         </div>}
 
