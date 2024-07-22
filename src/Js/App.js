@@ -397,7 +397,7 @@ function App() {
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
-        <p>{coinmain} OCTIES</p>
+        <p>{coinmain} $OCTIES</p>
       </div>
       <div className='Menu'>
         <div className='Skroll_Menu_Border'>
@@ -408,7 +408,7 @@ function App() {
               <p id='dp'>Home for Telegram OCs</p>
               <div className='MenuBtn'>
                 {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
-                <p> {Knopka && <p id="plus">+</p>} 1000 OCTIES</p>
+                <p> {Knopka && <p id="plus">+</p>} 1000 $OCTIES</p>
                 {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
@@ -420,7 +420,7 @@ function App() {
               <p id='dp'>Home for X OCs</p>
               <div className='MenuBtn'>
                 <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />
-                <p>+ 500 OCTIES</p>
+                <p>+ 500 $OCTIES</p>
               </div>
             </div>
           </div>
@@ -431,7 +431,7 @@ function App() {
               <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
               <div className='MenuBtn'>
                 {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
-                <p> {Knopka2 && <p id="plus">+</p>} 750 OCTIES</p>
+                <p> {Knopka2 && <p id="plus">+</p>} 750 $OCTIES</p>
                 {Galo4ka2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
@@ -452,7 +452,7 @@ function App() {
               <img src={TS1} alt='TS1' /> <p id='txt'>Account age</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{accountAgeCoins} OCTIES</p>
+              <p>+{accountAgeCoins} $OCTIES</p>
             </div>
           </div>
 
@@ -461,7 +461,7 @@ function App() {
               <img src={TS2} alt='TS2' /> <p id='txt'>Telegram Premium</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{hasTelegramPremium ? 500 : 0} OCTIES</p>
+              <p>+{hasTelegramPremium ? 500 : 0} $OCTIES</p>
             </div>
           </div>}
 
@@ -470,7 +470,7 @@ function App() {
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{subscriptionCoins} OCTIES</p>
+              <p>+{subscriptionCoins} $OCTIES</p>
             </div>
           </div>}
 
@@ -479,7 +479,7 @@ function App() {
             <img src={TS3} alt='TS3' /> <p id='txt'>CryptoSpace Subscription</p>
           </div>
           <div className='tsPhoto'>
-            <p>+{subscriptionCoins2} OCTIES</p>
+            <p>+{subscriptionCoins2} $OCTIES</p>
           </div>
         </div>}
 
@@ -488,7 +488,7 @@ function App() {
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{referralCoins} OCTIES</p>
+              <p>+{referralCoins} $OCTIES</p>
             </div>
           </div>}
         </div>

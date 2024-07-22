@@ -68,7 +68,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
 
                         <div className='LbPhoto' id='FR_Coins_frend'>
                            
-                        <p>+{user.earnedCoins} OCTIES</p>
+                        <p>+{user.earnedCoins} $OCTIES</p>
                         </div>
                     </div>
                 ))}

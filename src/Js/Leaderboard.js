@@ -93,9 +93,9 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
             <img src={logo} alt='logo' />
           </div>
           <div className='Lb_Text'>
-            <p>🥇The 1st holder will get 400,000 OCTIES</p>
-            <p>🥈The 2nd holder will get 250,000 OCTIES</p>
-            <p>🥉The 3rd holder will get 100,000 OCTIES</p>
+            <p>🥇The 1st holder will get 400,000 $OCTIES</p>
+            <p>🥈The 2nd holder will get 250,000 $OCTIES</p>
+            <p>🥉The 3rd holder will get 100,000 $OCTIES</p>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
           <div className='LbPhoto'>
             <div
               style={{
-                backgroundColor: userColorL, // Use the stable color from the state
+                backgroundColor: userColorL, 
                 borderRadius: '50%',
                 aspectRatio: '1',
                 height: '5.5vh',
@@ -120,7 +120,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
 
             <div className='NameLb'>
               <p>{userNickname ? `${userNickname}` : 'Loading...'}</p>
-              <p id='LbColor'>{coins} OCTIES</p>
+              <p id='LbColor'>{coins} $OCTIES</p>
             </div>
           </div>
           <div className='LbPhoto'>
@@ -153,7 +153,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
                 </div>
                 <div className='NameLb'>
                   <p> {user.nickname} </p>
-                  <p id='LbColor'>{user.coins} OCTIES</p>
+                  <p id='LbColor'>{user.coins} $OCTIES</p>
                 </div>
               </div>
               <div className='LbPhoto' id='medal'>
