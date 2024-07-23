@@ -293,20 +293,28 @@ function App() {
     }, 3000);
   };
 
+  const addUserCoins = async (amount) => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/add-coins`, { userId, amount });
+      if (response.status === 200) {
+        console.log('Coins added successfully:', response.data);
+        setCoins(response.data.coins);
+      } else {
+        console.error('Error adding coins:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Error adding coins:', error);
+    }
+  };
 
-  
-  const Tg_Channel_Open_X = async () => {
+  const Tg_Channel_Open_X = () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(X_LINK, '_blank');
-    setTimeout(async () => {
-      try {
-        const response = await axios.post(`${REACT_APP_BACKEND_URL}/reward`, { userId, rewardType: 'twitter' });
-        if (response.status === 200) {
-          setCoins(response.data.coins);
-          localStorage.setItem('KnopkaX', 'false');
-        }
-      } catch (error) {
-        console.error('Error rewarding user:', error);
+    setTimeout(() => {
+      if (localStorage.getItem('KnopkaX') === 'true') {
+        localStorage.setItem('KnopkaX', 'false');
+        localStorage.setItem('GalkaX', 'true');
+        addUserCoins(500); // Добавляем 500 монет
       }
     }, 5000);
   };
@@ -368,7 +376,7 @@ function App() {
           <p>Your Score</p>
         </div>
       </div>
-      <div className="main" onClick={(event) => {  localStorage.clear(); }}>
+      <div className="main" onClick={(event) => { handleOpenShop(event); localStorage.clear(); }}>
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
