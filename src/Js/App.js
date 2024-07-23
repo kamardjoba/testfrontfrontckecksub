@@ -78,6 +78,7 @@ function App() {
   const X_LINK = "https://x.com/Octies_GameFI";
 
 
+
   const blockRefs = [useRef(null), useRef(null)];
   const [blockVisibility, setBlockVisibility] = useState([false, false]);
 
@@ -294,7 +295,10 @@ function App() {
 
   const Tg_Channel_Open_X = () => {
     setTimeout(() => {
+
       window.open(X_LINK, '_blank');
+
+
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
         localStorage.setItem('KnopkaX', 'false');
         localStorage.setItem('GalkaX', 'true');
