@@ -377,8 +377,8 @@ function App() {
 
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border' id='ThirdBlock'>
-              <p id='up'>OCTIES X</p>
-              <p id='dp'>Home for X OCs</p>
+              <p id='up'>FOLOW US ON X.COM</p>
+              <p id='dp'>Stay updated with the latest news</p>
               <div className='MenuBtn'>
                 {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
                 <p> {KnopkaX && <p id="plus">+</p>} 500 $OCTIES</p>
