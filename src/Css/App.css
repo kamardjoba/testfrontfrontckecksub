@@ -128,10 +128,31 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+}
+
+.rightFlex{
+  width: 50%;
+  height: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.leftFlex{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.leftFlex img{
+  height: 70%;
+  padding-right: 2vh;
+}
+
+
 
 #Cryptospace{
   background: rgba(208, 108, 36, 0.5);

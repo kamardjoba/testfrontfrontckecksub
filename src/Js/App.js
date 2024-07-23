@@ -17,6 +17,9 @@ import TSX from '../IMG/TaskIcon/TSX.png';
 import galo4ka from '../IMG/All_Logo/galol4ka.png';
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
 
+import tgLogo from '../IMG/All_Logo/TgComunity.png';
+import XLogo from '../IMG/All_Logo/XCominity.png';
+
 import IconHome from '../IMG/LowerIcon/Home.png';
 import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
 import IconFriends from '../IMG/LowerIcon/Friends.png';
@@ -387,62 +390,78 @@ function App() {
 
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border'>
-              <p id='up'>OCTIES COMMUNITY</p>
-              <p id='dp'>Home for Telegram OCs</p>
-              <div className='MenuBtn'>
-                {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
-                <p> {Knopka && <p id="plus">+</p>} 1000 $OCTIES</p>
-                {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              <div className='rightFlex'>
+                <p id='up'>OCTIES COMMUNITY</p>
+                <p id='dp'>Home for Telegram OCs</p>
+                <div className='MenuBtn'>
+                  {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
+                  <p> {Knopka && <p id="plus">+</p>} 1000 $OCTIES</p>
+                  {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                </div>
+              </div>
+              <div className='leftFlex'>
+                <img src={tgLogo} alt='tgLogo'/>
               </div>
             </div>
           </div>
 
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border'>
-              <p id='up'>FOLOW US ON X.COM</p>
-              <p id='dp'>Stay updated with the latest news</p>
-              <div className='MenuBtn'>
-                {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                <p> {KnopkaX && <p id="plus">+</p>} 500 $OCTIES</p>
-                {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              <div className='rightFlex'>
+                <p id='up'>OCTIES X</p>
+                <p id='dp'>Home for X OCs</p>
+                <div className='MenuBtn'>
+                  {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  <p> {KnopkaX && <p id="plus">+</p>} 500 $OCTIES</p>
+                  {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                </div>
+              </div>
+              <div className='leftFlex'>
+                <img src={XLogo} alt='XLogo'/>
               </div>
             </div>
           </div>
 
           <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border'  id='Cryptospace'>
-              <p id='up'>Block1</p>
-              <p id='dp'>Description Block1</p>
-              <div className='MenuBtn'>
-                {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                <p> {KnopkaBlock1 && <p id="plus">+</p>} 250 $OCTIES</p>
-                {Galo4kaBlock1 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              <div className='rightFlex'>
+                <p id='up'>Block1</p>
+                <p id='dp'>Description Block1</p>
+                <div className='MenuBtn'>
+                  {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  <p> {KnopkaBlock1 && <p id="plus">+</p>} 250 $OCTIES</p>
+                  {Galo4kaBlock1 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                </div>
               </div>
-            </div>
+             </div> 
           </div>
 
           <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'  id='Cryptospace'>
-              <p id='up'>Block2</p>
-              <p id='dp'>Description Block2</p>
-              <div className='MenuBtn'>
-                {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                <p> {KnopkaBlock2 && <p id="plus">+</p>} 250 $OCTIES</p>
-                {Galo4kaBlock2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              <div className='rightFlex'>
+                <p id='up'>Block2</p>
+                <p id='dp'>Description Block2</p>
+                <div className='MenuBtn'>
+                  {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  <p> {KnopkaBlock2 && <p id="plus">+</p>} 250 $OCTIES</p>
+                  {Galo4kaBlock2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                </div>
               </div>
-            </div>
+            </div>  
           </div>
 
           <div className='MenuBorder' ref={blockRefs[4]} >
             <div className='flex_menu_border' id='Cryptospace'>
-              <p id='up'>Block3</p>
-              <p id='dp'>Description Block3</p>
-              <div className='MenuBtn'>
-                {KnopkaBlock3 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                <p> {KnopkaBlock3 && <p id="plus">+</p>} 250 $OCTIES</p>
-                {Galo4kaBlock3 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              <div className='rightFlex'>
+                <p id='up'>Block3</p>
+                <p id='dp'>Description Block3</p>
+                <div className='MenuBtn'>
+                  {KnopkaBlock3 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  <p> {KnopkaBlock3 && <p id="plus">+</p>} 250 $OCTIES</p>
+                  {Galo4kaBlock3 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                </div>
               </div>
-            </div>
+            </div>  
           </div>
 
         </div>
