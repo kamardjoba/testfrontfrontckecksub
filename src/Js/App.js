@@ -380,7 +380,7 @@ function App() {
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
-        <p>{coinmain} $OCTIES</p>
+        <p>{coins} $OCTIES</p>
       </div>
       <div className='Menu'>
         <div className='Skroll_Menu_Border'>
