@@ -119,7 +119,7 @@ body {
   width: 100%;
   scroll-snap-align: start;
   display: inline-block;
-  margin-right: 2vh;
+  margin-right: 1.7vh;
 }
 
 .flex_menu_border{
@@ -143,16 +143,15 @@ body {
   width: 50%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: end;
 }
 
 .leftFlex img{
-  height: 70%;
-  padding-right: 2vh;
+  height: 67%;
+  padding-right: 1.7vh;
+  padding-top: 1.8vh;
 }
-
-
 
 #Cryptospace{
   background: rgba(208, 108, 36, 0.5);
@@ -160,7 +159,7 @@ body {
 
 .Skroll_Menu_Border{
   width: 90%;
-  height: 27%;
+  height: 24%;
   overflow-y: hidden;
   white-space: nowrap;
   overflow-x: scroll;
@@ -168,34 +167,35 @@ body {
   scroll-behavior: smooth;
 }
 
-.MenuBorder p{margin-left: 2vh;}
-#up{margin-top: 2.5vh; font-size: 2.1vh;}
+.MenuBorder p{margin-left: 1.7vh;}
+#up{margin-top: 1.8vh; font-size: 2.1vh;}
 #dp{margin-bottom: 0.8vh; font-size: 1.8vh;}
+#dpp{margin-bottom: 0.8vh; font-size: 1.5vh; font-weight: 300; font-family: Mullerlight;}
+#upp{margin-top: 1.1vh; font-size: 2.1vh; display: inline-flex; align-items: end;}
 
 .MenuBorder button {
-  
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 2vh;
   height: 3.3vh;
   width: 5vh;
-  font-size: 2vh;
 }
 .MenuBtn{
   display: flex;
   flex-direction: row;
   height: 30%;
   align-items: center;
-  margin-bottom: 2vh;
+  margin-bottom: 1.2vh;
   color: #9F9F9F;
+  font-size: 1.8vh;
 }
-.MenuBtn img {height:100%;margin-left: 2vh;}
+.MenuBtn img {height:100%;margin-left: 1.7vh;}
 .MenuBtn p {margin-top: 0.8vh;}
 
 
 .Tasks{
-  height: 61%;
+  height: 64%;
   width: 90%;
   display: flex;
   flex-direction: column;

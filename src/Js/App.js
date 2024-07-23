@@ -19,6 +19,8 @@ import Ellipse from '../IMG/All_Logo/Ellipse.png';
 
 import tgLogo from '../IMG/All_Logo/TgComunity.png';
 import XLogo from '../IMG/All_Logo/XCominity.png';
+import Block1 from '../IMG/All_Logo/Block1.png';
+import Block2 from '../IMG/All_Logo/Block2.png';
 
 import IconHome from '../IMG/LowerIcon/Home.png';
 import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
@@ -395,7 +397,7 @@ function App() {
                 <p id='dp'>Home for Telegram OCs</p>
                 <div className='MenuBtn'>
                   {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
-                  <p> {Knopka && <p id="plus">+</p>} 1000 $OCTIES</p>
+                  <p> {Knopka && <p id="plus">+</p>}1000 $OCTIES</p>
                   {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
               </div>
@@ -412,7 +414,7 @@ function App() {
                 <p id='dp'>Home for X OCs</p>
                 <div className='MenuBtn'>
                   {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                  <p> {KnopkaX && <p id="plus">+</p>} 500 $OCTIES</p>
+                  <p> {KnopkaX && <p id="plus">+</p>}500 $OCTIES</p>
                   {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
               </div>
@@ -425,13 +427,16 @@ function App() {
           <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border'  id='Cryptospace'>
               <div className='rightFlex'>
-                <p id='up'>Block1</p>
-                <p id='dp'>Description Block1</p>
+              <p id='upp'>Тапаем <span class="emoji">🐹</span></p>
+                <p id='dp'>Потыкать и стать миллионером!</p>
                 <div className='MenuBtn'>
                   {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                  <p> {KnopkaBlock1 && <p id="plus">+</p>} 250 $OCTIES</p>
+                  <p> {KnopkaBlock1 && <p id="plus">+</p>}750 $OCTIES</p>
                   {Galo4kaBlock1 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
+              </div>
+              <div className='leftFlex'>
+                <img src={Block1} alt='Block1'/>
               </div>
              </div> 
           </div>
@@ -439,13 +444,16 @@ function App() {
           <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'  id='Cryptospace'>
               <div className='rightFlex'>
-                <p id='up'>Block2</p>
-                <p id='dp'>Description Block2</p>
+                <p id='up'>Hamster TapSwap Uzbekistan</p>
+                <p id='dpp'>⚡️ Bu kanalda siz TapSwap va Hamster <br/> Kombat Tezkor Yangiliklarni bilib olasiz</p>
                 <div className='MenuBtn'>
                   {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                  <p> {KnopkaBlock2 && <p id="plus">+</p>} 250 $OCTIES</p>
+                  <p> {KnopkaBlock2 && <p id="plus">+</p>}750 $OCTIES</p>
                   {Galo4kaBlock2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
+              </div>
+              <div className='leftFlex'>
+                <img src={Block2} alt='Block2'/>
               </div>
             </div>  
           </div>
@@ -457,7 +465,7 @@ function App() {
                 <p id='dp'>Description Block3</p>
                 <div className='MenuBtn'>
                   {KnopkaBlock3 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
-                  <p> {KnopkaBlock3 && <p id="plus">+</p>} 250 $OCTIES</p>
+                  <p> {KnopkaBlock3 && <p id="plus">+</p>}750 $OCTIES</p>
                   {Galo4kaBlock3 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
               </div>
