@@ -175,18 +175,7 @@ function App() {
     }
   }, [checkSubscription]);
 
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-      fetchUserData(userId).then(() => {
-        checkSubscription(userId).then(() => {
-          fetchUserData(userId);
-        });
-      });
-    } else {
-      console.error('userId не найден в URL');
-    }
-  }, [fetchUserData, checkSubscription]);
+
 
   const fetchUserData = useCallback(async (userId) => {
     try {
@@ -248,6 +237,20 @@ function App() {
       console.error('Ошибка при получении данных пользователя:', error);
     }
   }, [hasTelegramPremium, referralCoins]);
+
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      fetchUserData(userId).then(() => {
+        checkSubscription(userId).then(() => {
+          fetchUserData(userId);
+        });
+      });
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, [fetchUserData, checkSubscription]);
+
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
@@ -311,19 +314,7 @@ function App() {
     }, 3000);
   };
 
-  const addUserCoins = async (userId, amount) => {
-    try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/add-coins`, { userId, amount });
-      if (response.status === 200) {
-        console.log('Coins added successfully:', response.data);
-        setCoins(response.data.coins); // Обновляем состояние монет в приложении
-      } else {
-        console.error('Error adding coins:', response.data.error);
-      }
-    } catch (error) {
-      console.error('Error adding coins:', error);
-    }
-};
+
 
   
 const Tg_Channel_Open_X = async () => {
