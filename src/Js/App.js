@@ -13,6 +13,7 @@ import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
 import TS3 from '../IMG/TaskIcon/TS3.png';
 import TS4 from '../IMG/TaskIcon/TS4.png';
+import TSX from '../IMG/TaskIcon/TSX.png';
 import galo4ka from '../IMG/All_Logo/galol4ka.png';
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
 
@@ -35,20 +36,20 @@ function App() {
   }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
 
-  if (!localStorage.getItem('Galka2')) {
-    localStorage.setItem('Galka2', 'false');
+  if (!localStorage.getItem('GalkaX')) {
+    localStorage.setItem('GalkaX', 'false');
   }
-  const Galo4ka2 = localStorage.getItem('Galka2') === 'true';
+  const Galo4kaX = localStorage.getItem('GalkaX') === 'true';
 
   if (!localStorage.getItem('Knopka')) {
     localStorage.setItem('Knopka', 'true');
   }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
-  if (!localStorage.getItem('Knopka2')) {
-    localStorage.setItem('Knopka2', 'true');
+  if (!localStorage.getItem('KnopkaX')) {
+    localStorage.setItem('KnopkaX', 'true');
   }
-  const Knopka2 = localStorage.getItem('Knopka2') === 'true';
+  const KnopkaX = localStorage.getItem('KnopkaX') === 'true';
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
@@ -58,7 +59,6 @@ function App() {
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-  const [subscriptionCoins2, setSubscriptionCoins2] = useState(0);
   const [referralCode, setReferralCode] = useState('');
   const [telegramLink, setTelegramLink] = useState('');
   const coinmain = coins - referralCoins;
@@ -75,11 +75,11 @@ function App() {
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
-  const TG_CHANNEL_LINK1 = "https://t.me/test_sub_check";
-  const TG_CHANNEL_LINK3 = "https://t.me/test_sub_check3";
+  const X_LINK = "https://x.com/Octies_GameFI";
 
-  const blockRefs = [useRef(null), useRef(null), useRef(null)];
-  const [blockVisibility, setBlockVisibility] = useState([false, false, false]);
+
+  const blockRefs = [useRef(null), useRef(null)];
+  const [blockVisibility, setBlockVisibility] = useState([false, false]);
 
   useEffect(() => {
     const observerOptions = {
@@ -145,15 +145,6 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -208,16 +199,6 @@ function App() {
           setVisibleInvite(true);
         }
 
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
-
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -252,15 +233,6 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('Galka2', 'true');
-          localStorage.setItem('Knopka2', 'false');
-          setSubscriptionCoins2(750);
-        } else {
-          localStorage.setItem('Galka2', 'false');
-          localStorage.setItem('Knopka2', 'true');
-          setSubscriptionCoins2(0);
-        }
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -320,23 +292,15 @@ function App() {
     }, 3000);
   };
 
-  const Tg_Channel_Open_chek1 = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(TG_CHANNEL_LINK1, '_blank');
+  const Tg_Channel_Open_X = () => {
     setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
+      window.open(X_LINK, '_blank');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+        localStorage.setItem('KnopkaX', 'false');
+        localStorage.setItem('GalkaX', 'true');
+    }, 5000);
+};
 
-  const Tg_Channel_Open_chek2 = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(TG_CHANNEL_LINK3, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -374,6 +338,15 @@ function App() {
     localStorage.setItem('FPage', 'false');
   };
 
+  const getRandomColor = useCallback(() => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }, []);
+  
   return (
     <div className="App">
       {app && <div className='blk'></div>}
@@ -388,7 +361,7 @@ function App() {
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
-        <p>{coinmain} OCTIES</p>
+        <p>{coinmain} $OCTIES</p>
       </div>
       <div className='Menu'>
         <div className='Skroll_Menu_Border'>
@@ -399,31 +372,20 @@ function App() {
               <p id='dp'>Home for Telegram OCs</p>
               <div className='MenuBtn'>
                 {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
-                <p> {Knopka && <p id="plus">+</p>} 1000 OCTIES</p>
+                <p> {Knopka && <p id="plus">+</p>} 1000 $OCTIES</p>
                 {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
           </div>
 
           <div className='MenuBorder' ref={blockRefs[1]}>
-            <div className='flex_menu_border' id='Cryptospace'>
-              <p id='up'>CryptoSpace</p>
-              <p id='dp'>Уникальные крипто-проекты / Web3 Игры</p>
-              <div className='MenuBtn'>
-                {Knopka2 && <img onClick={Tg_Channel_Open_chek1} src={Join} alt='Join' />}
-                <p> {Knopka2 && <p id="plus">+</p>} 750 OCTIES</p>
-                {Galo4ka2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
-              </div>
-            </div>
-          </div>
-
-          <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border' id='ThirdBlock'>
-              <p id='up'>THIRD BLOCK</p>
-              <p id='dp'>Description for the third block</p>
+              <p id='up'>FOLOW US ON X.COM</p>
+              <p id='dp'>Stay updated with the latest news</p>
               <div className='MenuBtn'>
-                <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />
-                <p>+ 500 OCTIES</p>
+                {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                <p> {KnopkaX && <p id="plus">+</p>} 500 $OCTIES</p>
+                {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
               </div>
             </div>
           </div>
@@ -433,7 +395,6 @@ function App() {
           <div className='EllipsSkroll'>
             <img src={Ellipse} alt='Ellips' className={blockVisibility[0] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[1] ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
           </div>
           <p>Your Rewards</p>
         </div>
@@ -443,7 +404,7 @@ function App() {
               <img src={TS1} alt='TS1' /> <p id='txt'>Account age</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{accountAgeCoins} OCTIES</p>
+              <p>+{accountAgeCoins} $OCTIES</p>
             </div>
           </div>
 
@@ -452,7 +413,7 @@ function App() {
               <img src={TS2} alt='TS2' /> <p id='txt'>Telegram Premium</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{hasTelegramPremium ? 500 : 0} OCTIES</p>
+              <p>+{hasTelegramPremium ? 500 : 0} $OCTIES</p>
             </div>
           </div>}
 
@@ -461,16 +422,16 @@ function App() {
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{subscriptionCoins} OCTIES</p>
+              <p>+{subscriptionCoins} $OCTIES</p>
             </div>
           </div>}
 
-          {Galo4ka2 && <div className='TS'>
+          {Galo4kaX && <div className='TS'>
           <div className='tsPhoto'>
-            <img src={TS3} alt='TS3' /> <p id='txt'>CryptoSpace Subscription</p>
+            <img src={TSX} alt='TSX' /> <p id='txt'>X Channel Subscription</p>
           </div>
           <div className='tsPhoto'>
-            <p>+{subscriptionCoins2} OCTIES</p>
+            <p>+ X $OCTIES</p>
           </div>
         </div>}
 
@@ -479,7 +440,7 @@ function App() {
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{referralCoins} OCTIES</p>
+              <p>+{referralCoins} $OCTIES</p>
             </div>
           </div>}
         </div>
@@ -507,9 +468,9 @@ function App() {
 
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coinmain} />)}
+      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coinmain} getRandomColor={getRandomColor}/>)}
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} />)}
+      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor} />)}
 
     </div>
   );

@@ -2,6 +2,10 @@
   user-select: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
 	margin: 0;
   width: 100%;
@@ -84,7 +88,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow-y: auto;
 }
 
 .Reward {
@@ -128,7 +131,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-
 }
 
 #Cryptospace{
@@ -142,6 +144,7 @@ body {
   white-space: nowrap;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .MenuBorder p{margin-left: 2vh;}
@@ -176,6 +179,7 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 1.8vh;
+  overflow-y: auto;
 }
 
 .TS{
