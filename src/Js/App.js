@@ -175,6 +175,19 @@ function App() {
     }
   }, [checkSubscription]);
 
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      fetchUserData(userId).then(() => {
+        checkSubscription(userId).then(() => {
+          fetchUserData(userId);
+        });
+      });
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, [fetchUserData, checkSubscription]);
+
   const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
@@ -191,7 +204,7 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
-       
+  
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
@@ -199,7 +212,7 @@ function App() {
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
-
+  
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -208,6 +221,14 @@ function App() {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
           setSubscriptionCoins(0);
+        }
+  
+        if (data.hasClickedXButton) { // Проверка флага
+          localStorage.setItem('GalkaX', 'true');
+          localStorage.setItem('KnopkaX', 'false');
+        } else {
+          localStorage.setItem('GalkaX', 'false');
+          localStorage.setItem('KnopkaX', 'true');
         }
   
         setAccountAgeCoins(accountAgeCoins);
@@ -227,7 +248,6 @@ function App() {
       console.error('Ошибка при получении данных пользователя:', error);
     }
   }, [hasTelegramPremium, referralCoins]);
-  
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
@@ -260,9 +280,7 @@ function App() {
           checkSubscription(userId);
         }
       };
-
       document.addEventListener('visibilitychange', handleVisibilityChange);
-
       return () => {
         document.removeEventListener('visibilitychange', handleVisibilityChange);
       };
@@ -308,15 +326,23 @@ function App() {
 };
 
   
-  const Tg_Channel_Open_X = () => {
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(X_LINK, '_blank');
-    setTimeout(() => {
-      localStorage.setItem('KnopkaX', 'false');
-      localStorage.setItem('GalkaX', 'true');
-      addUserCoins(userId, 500); // Добавляем 500 монет
-    }, 5000);
+const Tg_Channel_Open_X = async () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  window.open(X_LINK, '_blank');
+  setTimeout(async () => {
+    localStorage.setItem('KnopkaX', 'false');
+    localStorage.setItem('GalkaX', 'true');
+    
+    try {
+      await axios.post(`${REACT_APP_BACKEND_URL}/update-x-click`, { userId });
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/add-coins`, { userId, amount: 500 });
+      setCoins(response.data.coins); // Обновляем состояние монет
+    } catch (error) {
+      console.error('Ошибка при обновлении состояния и добавлении монет:', error);
+    }
+  }, 5000);
 };
+
 
   
 
