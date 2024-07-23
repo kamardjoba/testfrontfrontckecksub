@@ -294,12 +294,9 @@ function App() {
   };
 
   const Tg_Channel_Open_X = () => {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(X_LINK, '_blank');
     setTimeout(() => {
-
-      window.open(X_LINK, '_blank');
-
-
-        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
         localStorage.setItem('KnopkaX', 'false');
         localStorage.setItem('GalkaX', 'true');
     }, 5000);
