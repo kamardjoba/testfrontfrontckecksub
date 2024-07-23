@@ -305,7 +305,8 @@ function App() {
     } catch (error) {
       console.error('Error adding coins:', error);
     }
-  };
+};
+
   
   const Tg_Channel_Open_X = () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -315,7 +316,8 @@ function App() {
       localStorage.setItem('GalkaX', 'true');
       addUserCoins(userId, 500); // Добавляем 500 монет
     }, 5000);
-  };
+};
+
   
 
 
