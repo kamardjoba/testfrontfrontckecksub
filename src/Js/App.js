@@ -307,16 +307,22 @@ function App() {
     }
   };
   
-  const Tg_Channel_Open_X = () => {
+  const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(X_LINK, '_blank');
-    setTimeout(() => {
-      localStorage.setItem('KnopkaX', 'false');
-      localStorage.setItem('GalkaX', 'true');
-      addUserCoins(userId, 500); // Добавляем 500 монет
+    setTimeout(async () => {
+      try {
+        const response = await axios.post(`${REACT_APP_BACKEND_URL}/reward`, { userId, rewardType: 'twitter' });
+        if (response.status === 200) {
+          setCoins(response.data.coins);
+          localStorage.setItem('KnopkaX', 'false');
+        }
+      } catch (error) {
+        console.error('Error rewarding user:', error);
+      }
     }, 5000);
   };
-  
+
 
 
   useEffect(() => {
