@@ -374,7 +374,7 @@ function App() {
           <p>Your Score</p>
         </div>
       </div>
-      <div className="main">
+      <div className="main" onClick={(event) => { localStorage.clear(); }}>
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
