@@ -293,14 +293,30 @@ function App() {
     }, 3000);
   };
 
+  const addUserCoins = async (userId, amount) => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/add-coins`, { userId, amount });
+      if (response.status === 200) {
+        console.log('Coins added successfully:', response.data);
+        setCoins(response.data.coins); // Обновляем состояние монет в приложении
+      } else {
+        console.error('Error adding coins:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Error adding coins:', error);
+    }
+  };
+  
   const Tg_Channel_Open_X = () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(X_LINK, '_blank');
     setTimeout(() => {
-        localStorage.setItem('KnopkaX', 'false');
-        localStorage.setItem('GalkaX', 'true');
+      localStorage.setItem('KnopkaX', 'false');
+      localStorage.setItem('GalkaX', 'true');
+      addUserCoins(userId, 500); // Добавляем 500 монет
     }, 5000);
-};
+  };
+  
 
 
   useEffect(() => {
@@ -432,7 +448,7 @@ function App() {
             <img src={TSX} alt='TSX' /> <p id='txt'>X Channel Subscription</p>
           </div>
           <div className='tsPhoto'>
-            <p>+ X $OCTIES</p>
+            <p>+ 500 $OCTIES</p>
           </div>
         </div>}
 
