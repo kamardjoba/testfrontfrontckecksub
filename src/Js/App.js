@@ -31,25 +31,29 @@ const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.a
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
-  if (!localStorage.getItem('Galka')) {
-    localStorage.setItem('Galka', 'false');
-  }
+  if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
-
-  if (!localStorage.getItem('GalkaX')) {
-    localStorage.setItem('GalkaX', 'false');
-  }
-  const Galo4kaX = localStorage.getItem('GalkaX') === 'true';
-
-  if (!localStorage.getItem('Knopka')) {
-    localStorage.setItem('Knopka', 'true');
-  }
+  if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
   const Knopka = localStorage.getItem('Knopka') === 'true';
-
-  if (!localStorage.getItem('KnopkaX')) {
-    localStorage.setItem('KnopkaX', 'true');
-  }
+  if (!localStorage.getItem('GalkaX')) {localStorage.setItem('GalkaX', 'false');}
+  const Galo4kaX = localStorage.getItem('GalkaX') === 'true';
+  if (!localStorage.getItem('KnopkaX')) {localStorage.setItem('KnopkaX', 'true');}
   const KnopkaX = localStorage.getItem('KnopkaX') === 'true';
+
+  if (!localStorage.getItem('GalkaBlock1')) {localStorage.setItem('GalkaBlock1', 'false');}
+  const Galo4kaBlock1 = localStorage.getItem('GalkaBlock1') === 'true';
+  if (!localStorage.getItem('KnopkaBlock1')) {localStorage.setItem('KnopkaBlock1', 'true');}
+  const KnopkaBlock1 = localStorage.getItem('KnopkaBlock1') === 'true';
+  
+  if (!localStorage.getItem('GalkaBlock2')) {localStorage.setItem('GalkaBlock2', 'false');}
+  const Galo4kaBlock2 = localStorage.getItem('GalkaBlock2') === 'true';
+  if (!localStorage.getItem('KnopkaBlock2')) {localStorage.setItem('KnopkaBlock2', 'true');}
+  const KnopkaBlock2 = localStorage.getItem('KnopkaBlock2') === 'true';
+
+  if (!localStorage.getItem('GalkaBlock3')) {localStorage.setItem('GalkaBlock3', 'false');}
+  const Galo4kaBlock3 = localStorage.getItem('GalkaBlock3') === 'true';
+  if (!localStorage.getItem('KnopkaBlock3')) {localStorage.setItem('KnopkaBlock3', 'true');}
+  const KnopkaBlock3 = localStorage.getItem('KnopkaBlock3') === 'true';
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
@@ -77,10 +81,8 @@ function App() {
   const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
   const X_LINK = "https://x.com/Octies_GameFI";
 
-
-
-  const blockRefs = [useRef(null), useRef(null)];
-  const [blockVisibility, setBlockVisibility] = useState([false, false]);
+  const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false]);
 
   useEffect(() => {
     const observerOptions = {
@@ -284,15 +286,6 @@ function App() {
     }
   }, [fetchUserData, checkSubscription]);
 
-  const Tg_Channel_Open_chek = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(TG_CHANNEL_LINK, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
-
   const addUserCoins = async (amount) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/add-coins`, { userId, amount });
@@ -319,7 +312,14 @@ function App() {
     }, 5000);
   };
 
-
+  const Tg_Channel_Open_chek = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -398,7 +398,7 @@ function App() {
           </div>
 
           <div className='MenuBorder' ref={blockRefs[1]}>
-            <div className='flex_menu_border' id='ThirdBlock'>
+            <div className='flex_menu_border'>
               <p id='up'>FOLOW US ON X.COM</p>
               <p id='dp'>Stay updated with the latest news</p>
               <div className='MenuBtn'>
@@ -409,11 +409,50 @@ function App() {
             </div>
           </div>
 
+          <div className='MenuBorder' ref={blockRefs[2]}>
+            <div className='flex_menu_border'  id='Cryptospace'>
+              <p id='up'>Block1</p>
+              <p id='dp'>Description Block1</p>
+              <div className='MenuBtn'>
+                {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                <p> {KnopkaBlock1 && <p id="plus">+</p>} 250 $OCTIES</p>
+                {Galo4kaBlock1 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              </div>
+            </div>
+          </div>
+
+          <div className='MenuBorder' ref={blockRefs[3]}>
+            <div className='flex_menu_border'  id='Cryptospace'>
+              <p id='up'>Block2</p>
+              <p id='dp'>Description Block2</p>
+              <div className='MenuBtn'>
+                {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                <p> {KnopkaBlock2 && <p id="plus">+</p>} 250 $OCTIES</p>
+                {Galo4kaBlock2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              </div>
+            </div>
+          </div>
+
+          <div className='MenuBorder' ref={blockRefs[4]} >
+            <div className='flex_menu_border' id='Cryptospace'>
+              <p id='up'>Block3</p>
+              <p id='dp'>Description Block3</p>
+              <div className='MenuBtn'>
+                {KnopkaBlock3 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                <p> {KnopkaBlock3 && <p id="plus">+</p>} 250 $OCTIES</p>
+                {Galo4kaBlock3 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+              </div>
+            </div>
+          </div>
+
         </div>
         <div className='Reward'>
           <div className='EllipsSkroll'>
             <img src={Ellipse} alt='Ellips' className={blockVisibility[0] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[1] ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[3] ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[4] ? '' : 'img-dark'} />
           </div>
           <p>Your Rewards</p>
         </div>
