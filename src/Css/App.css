@@ -171,7 +171,7 @@ body {
 #up{margin-top: 1.8vh; font-size: 2.1vh;}
 #dp{margin-bottom: 0.8vh; font-size: 1.8vh;}
 #dpp{margin-bottom: 0.8vh; font-size: 1.5vh; font-weight: 300; font-family: Mullerlight;}
-#upp{ margin-top: 1.1vh; font-size: 2.1vh; display: inline-flex; align-items: end;}
+#upp{ margin-top: 1vh; font-size: 2.1vh; display: inline-flex; align-items: end;}
 
 .MenuBorder button {
   display: flex;
