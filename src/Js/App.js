@@ -13,6 +13,7 @@ import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
 import TS3 from '../IMG/TaskIcon/TS3.png';
 import TS4 from '../IMG/TaskIcon/TS4.png';
+import TSX from '../IMG/TaskIcon/TSX.png';
 import galo4ka from '../IMG/All_Logo/galol4ka.png';
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
 
@@ -424,7 +425,7 @@ function App() {
 
           {Galo4kaX && <div className='TS'>
           <div className='tsPhoto'>
-            <img src={TS3} alt='TS3' /> <p id='txt'>X Channel Subscription</p>
+            <img src={TSX} alt='TSX' /> <p id='txt'>X Channel Subscription</p>
           </div>
           <div className='tsPhoto'>
             <p>+ X $OCTIES</p>
