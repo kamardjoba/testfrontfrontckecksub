@@ -245,9 +245,7 @@ function App() {
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
-        if(data.hasReceivedTwitterReward){
-          setCoins (data.coins + 500);
-        }
+    
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -627,9 +625,19 @@ function App() {
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscriptions</p>
             </div>
             <div className='tsPhoto'>
+              <p>+1000 $OCTIES</p>
+            </div>
+          </div>}
+
+          {Galo4ka && <div className='TS'>
+            <div className='tsPhoto'>
+              <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscriptions</p>
+            </div>
+            <div className='tsPhoto'>
               <p>+{subscriptionCoins} $OCTIES</p>
             </div>
           </div>}
+
 
           {Galo4kaX && <div className='TS'>
           <div className='tsPhoto'>
