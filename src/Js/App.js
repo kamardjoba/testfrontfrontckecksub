@@ -445,7 +445,7 @@ function App() {
             <div className='flex_menu_border'  id='Cryptospace'>
               <div className='rightFlex'>
                 <p id='upp'>Hamster TapSwap Uzbekistan</p>
-                <p id='dpp'><span class="emojii">⚡️</span>Bu kanalda siz TapSwap va Hamster <p> Kombat Tezkor Yangiliklarni bilib olasiz</p></p>
+                <p id='dpp'>Bu kanalda siz TapSwap va Hamster <p> Kombat Tezkor Yangiliklarni bilib olasiz</p></p>
                 <div className='MenuBtn'>
                   {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
                   <p> {KnopkaBlock2 && <p id="plus">+</p>}750 $OCTIES</p>
