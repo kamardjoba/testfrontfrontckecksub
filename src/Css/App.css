@@ -175,7 +175,7 @@ body {
 
 .emoji {
   position: absolute;
-  top: -0.7vh;  
+  bottom: 0.1vh;
 }
 
 .MenuBorder button {
