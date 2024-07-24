@@ -291,7 +291,7 @@ function App() {
         const data = response.data;
         setCoins(data.coins);
         setSubscriptionCoins(data.coinsSub);
-
+        
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
