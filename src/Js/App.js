@@ -305,7 +305,7 @@ function App() {
         setSubscriptionCoins(data.coinsSub);
         
         if(data.hasReceivedTwitterReward){
-          coinmain += 500;
+          coins += 500;
         }
 
         if (data.hasCheckedSubscription) {
