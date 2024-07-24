@@ -83,7 +83,11 @@ function App() {
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
-  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
+  const TG_CHANNEL_LINK = "https://t.me/octies_channel";
+  const TG_CHANNEL_LINK2 = "https://t.me/test_sub_check2";
+  const TG_CHANNEL_LINK3 = "https://t.me/test_sub_check";
+  const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
+
   const X_LINK = "https://x.com/Octies_GameFI";
 
   const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -163,6 +167,36 @@ function App() {
           localStorage.setItem('Knopka', 'true');
           setSubscriptionCoins(0);
         }
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+        if (datahasCheckedSubscription3) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+        if (data.hasCheckedSubscription4) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+        
+
+
 
       } else {
         console.error('Ошибка при проверке подписки:', response.data.message);
@@ -198,16 +232,40 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         setcoinOnlyYears(accountAgeCoins);
-       
         if (hasTelegramPremium === true) {
           setVisibleTelegramPremium(true);
         }
-  
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
-
         if (data.hasCheckedSubscription) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+        if (data.hasCheckedSubscription2) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+        if (data.hasCheckedSubscription3) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+          setSubscriptionCoins(1000);
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
+          setSubscriptionCoins(0);
+        }
+        if (data.hasCheckedSubscription4) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
           setSubscriptionCoins(1000);
@@ -251,6 +309,7 @@ function App() {
           localStorage.setItem('Knopka', 'true');
           setSubscriptionCoins(0);
         }
+        
       } else {
         console.error('Ошибка при проверке подписки:', response.data.error);
       }
@@ -316,6 +375,36 @@ function App() {
       }
     }, 5000);
   };
+
+  const Tg_Channel_Open_chek2 = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK2, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+  const Tg_Channel_Open_chek3 = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK3, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+
+  const Tg_Channel_Open_chek4 = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK4, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+
 
   const Tg_Channel_Open_chek = () => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -430,7 +519,7 @@ function App() {
                 <p id='up'>Тапаем <span class="emoji">🐹</span></p>
                 <p id='dp'>Потыкать и стать миллионером!</p>
                 <div className='MenuBtn'>
-                  {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  {KnopkaBlock1 && <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />}
                   <p> {KnopkaBlock1 && <p id="plus">+</p>}750 $OCTIES</p>
                   {Galo4kaBlock1 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
@@ -447,7 +536,7 @@ function App() {
                 <p id='upp'>Hamster TapSwap Uzbekistan</p>
                 <p id='dpp'>Bu kanalda siz TapSwap va Hamster <p> Kombat Tezkor Yangiliklarni bilib olasiz</p></p>
                 <div className='MenuBtn'>
-                  {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  {KnopkaBlock2 && <img onClick={Tg_Channel_Open_chek3} src={Join} alt='Join' />}
                   <p> {KnopkaBlock2 && <p id="plus">+</p>}750 $OCTIES</p>
                   {Galo4kaBlock2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
@@ -464,7 +553,7 @@ function App() {
                 <p id='up'>Block3</p>
                 <p id='dp'>Description Block3</p>
                 <div className='MenuBtn'>
-                  {KnopkaBlock3 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
+                  {KnopkaBlock3 && <img onClick={Tg_Channel_Open_chek4} src={Join} alt='Join' />}
                   <p> {KnopkaBlock3 && <p id="plus">+</p>}50 $OCTIES</p>
                   {Galo4kaBlock3 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
