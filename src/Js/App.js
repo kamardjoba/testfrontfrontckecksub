@@ -157,7 +157,6 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        setSubscriptionCoins(data.coinsSub);
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -229,6 +228,7 @@ function App() {
       const data = response.data;
       if (response.status === 200) {
         setCoins(data.coins);
+        setSubscriptionCoins(data.SUBCCOINS);
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
   
