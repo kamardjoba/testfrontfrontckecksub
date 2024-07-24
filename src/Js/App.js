@@ -245,6 +245,9 @@ function App() {
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
+        if(data.hasReceivedTwitterReward){
+          setCoins (data.coins + 500);
+        }
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -304,9 +307,7 @@ function App() {
         setCoins(data.coins);
         setSubscriptionCoins(data.coinsSub);
         
-        if(data.hasReceivedTwitterReward){
-          setCoins (data.coins + 500);
-        }
+       
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
