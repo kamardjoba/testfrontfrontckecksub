@@ -379,19 +379,7 @@ function App() {
     }
   }, [fetchUserData, checkSubscription]);
 
-  const addUserCoins = async (amount) => {
-    try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/add-coins`, { userId, amount });
-      if (response.status === 200) {
-        console.log('Coins added successfully:', response.data);
-        setCoins(response.data.coins);
-      } else {
-        console.error('Error adding coins:', response.data.error);
-      }
-    } catch (error) {
-      console.error('Error adding coins:', error);
-    }
-  };
+
   
   const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
