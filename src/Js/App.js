@@ -513,7 +513,7 @@ function App() {
 
           {Galo4kaX && <div className='TS'>
           <div className='tsPhoto'>
-            <img src={TSX} alt='TSX' /> <p id='txt'>X Channel Subscription</p>
+            <img src={TSX} alt='TSX' /> <p id='txt'>Octies X</p>
           </div>
           <div className='tsPhoto'>
             <p>+ 500 $OCTIES</p>
