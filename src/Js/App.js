@@ -64,6 +64,7 @@ function App() {
   const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
+  const [coinssub, setCoinssub] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
@@ -157,7 +158,7 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-
+        setCoinssub(data.Coinsub);
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -176,7 +177,7 @@ function App() {
           localStorage.setItem('Knopka', 'true');
           setSubscriptionCoins(0);
         }
-        if (datahasCheckedSubscription3) {
+        if (data.hasCheckedSubscription3) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
           setSubscriptionCoins(1000);
