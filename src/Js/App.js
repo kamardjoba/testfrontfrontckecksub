@@ -427,7 +427,7 @@ function App() {
           <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border'  id='Cryptospace'>
               <div className='rightFlex'>
-                <p id='up'>Тапаем</p>
+                <p id='up'>Тапаем <span class="emoji">🐹</span></p>
                 <p id='dp'>Потыкать и стать миллионером!</p>
                 <div className='MenuBtn'>
                   {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
