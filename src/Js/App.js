@@ -170,26 +170,32 @@ function App() {
 
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');         
+          localStorage.setItem('KnopkaBlock1', 'false');   
+          setSubscriptionCoins(subscriptionCoins + 750);      
         } else {
           localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');     
+          localStorage.setItem('KnopkaBlock1', 'true');  
+          setSubscriptionCoins(subscriptionCoins - 750);     
         }
 
         if (data.hasCheckedSubscription3) {
           localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');         
+          localStorage.setItem('KnopkaBlock2', 'false');  
+          setSubscriptionCoins(subscriptionCoins + 750);         
         } else {
           localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');     
+          localStorage.setItem('KnopkaBlock2', 'true'); 
+          setSubscriptionCoins(subscriptionCoins - 750);     
         }
 
         if (data.hasCheckedSubscription4) {
           localStorage.setItem('GalkaBlock3', 'true');
-          localStorage.setItem('KnopkaBlock3', 'false');         
+          localStorage.setItem('KnopkaBlock3', 'false'); 
+          setSubscriptionCoins(subscriptionCoins + 750);          
         } else {
           localStorage.setItem('GalkaBlock3', 'false');
-          localStorage.setItem('KnopkaBlock3', 'true');     
+          localStorage.setItem('KnopkaBlock3', 'true');    
+          setSubscriptionCoins(subscriptionCoins - 750);  
         }
         
       } else {
@@ -198,7 +204,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при проверке подписки:', error);
     }
-  }, []);
+  }, [subscriptionCoins]);
 
   useEffect(() => {
     if (userId) {
@@ -243,26 +249,32 @@ function App() {
         }
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');         
+          localStorage.setItem('KnopkaBlock1', 'false');   
+          setSubscriptionCoins(subscriptionCoins + 750);      
         } else {
           localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');     
+          localStorage.setItem('KnopkaBlock1', 'true');  
+          setSubscriptionCoins(subscriptionCoins - 750);     
         }
 
         if (data.hasCheckedSubscription3) {
           localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');         
+          localStorage.setItem('KnopkaBlock2', 'false');  
+          setSubscriptionCoins(subscriptionCoins + 750);         
         } else {
           localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');     
+          localStorage.setItem('KnopkaBlock2', 'true'); 
+          setSubscriptionCoins(subscriptionCoins - 750);     
         }
 
         if (data.hasCheckedSubscription4) {
           localStorage.setItem('GalkaBlock3', 'true');
-          localStorage.setItem('KnopkaBlock3', 'false');         
+          localStorage.setItem('KnopkaBlock3', 'false'); 
+          setSubscriptionCoins(subscriptionCoins + 750);          
         } else {
           localStorage.setItem('GalkaBlock3', 'false');
-          localStorage.setItem('KnopkaBlock3', 'true');     
+          localStorage.setItem('KnopkaBlock3', 'true');    
+          setSubscriptionCoins(subscriptionCoins - 750);  
         }
   
         setAccountAgeCoins(accountAgeCoins);
@@ -281,7 +293,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium, referralCoins]);
+  }, [hasTelegramPremium, referralCoins, subscriptionCoins]);
   
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
@@ -302,26 +314,32 @@ function App() {
 
         if (data.hasCheckedSubscription2) {
           localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');         
+          localStorage.setItem('KnopkaBlock1', 'false');   
+          setSubscriptionCoins(subscriptionCoins + 750);      
         } else {
           localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');     
+          localStorage.setItem('KnopkaBlock1', 'true');  
+          setSubscriptionCoins(subscriptionCoins - 750);     
         }
 
         if (data.hasCheckedSubscription3) {
           localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');         
+          localStorage.setItem('KnopkaBlock2', 'false');  
+          setSubscriptionCoins(subscriptionCoins + 750);         
         } else {
           localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');     
+          localStorage.setItem('KnopkaBlock2', 'true'); 
+          setSubscriptionCoins(subscriptionCoins - 750);     
         }
 
         if (data.hasCheckedSubscription4) {
           localStorage.setItem('GalkaBlock3', 'true');
-          localStorage.setItem('KnopkaBlock3', 'false');         
+          localStorage.setItem('KnopkaBlock3', 'false'); 
+          setSubscriptionCoins(subscriptionCoins + 750);          
         } else {
           localStorage.setItem('GalkaBlock3', 'false');
-          localStorage.setItem('KnopkaBlock3', 'true');     
+          localStorage.setItem('KnopkaBlock3', 'true');    
+          setSubscriptionCoins(subscriptionCoins - 750);  
         }
         
       } else {
@@ -607,7 +625,7 @@ function App() {
 
           {Galo4ka && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
+              <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscriptions</p>
             </div>
             <div className='tsPhoto'>
               <p>+{subscriptionCoins} $OCTIES</p>
