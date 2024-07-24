@@ -223,78 +223,65 @@ function App() {
 }, []);
 
 
-  const fetchUserData = useCallback(async (userId) => {
-    try {
+const fetchUserData = useCallback(async (userId) => {
+  try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        setCoins(data.coins);
-        setReferralCoins(data.referralCoins);
-        setHasTelegramPremium(data.hasTelegramPremium);
-  
-        const accountCreationDate = new Date(data.accountCreationDate);
-        const currentYear = new Date().getFullYear();
-        const accountYear = accountCreationDate.getFullYear();
-        const yearsOld = currentYear - accountYear;
-        setYearr(yearsOld);
-        const accountAgeCoins = yearsOld * 500;
-        setcoinOnlyYears(accountAgeCoins);
-        if (hasTelegramPremium === true) {
-          setVisibleTelegramPremium(true);
-        }
-        if (referralCoins > 0) {
-          setVisibleInvite(true);
-        }
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
+          setCoins(data.coins);
+          setReferralCoins(data.referralCoins);
+          setHasTelegramPremium(data.hasTelegramPremium);
+          
+          const accountCreationDate = new Date(data.accountCreationDate);
+          const currentYear = new Date().getFullYear();
+          const accountYear = accountCreationDate.getFullYear();
+          const yearsOld = currentYear - accountYear;
+          const accountAgeCoins = yearsOld * 500;
+          setcoinOnlyYears(accountAgeCoins);
+          if (hasTelegramPremium) {
+              setVisibleTelegramPremium(true);
+          }
+          if (referralCoins > 0) {
+              setVisibleInvite(true);
+          }
 
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-
-        }
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');        
-        } else {
-          localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');       
-        }
-
-        if (data.hasCheckedSubscription3) {
-          localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');          
-        } else {
-          localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');    
-        }
-
-        if (data.hasCheckedSubscription4) {
-          localStorage.setItem('GalkaBlock3', 'true');
-          localStorage.setItem('KnopkaBlock3', 'false');         
-        } else {
-          localStorage.setItem('GalkaBlock3', 'false');
-          localStorage.setItem('KnopkaBlock3', 'true');    
-        }
-  
-        setAccountAgeCoins(accountAgeCoins);
-  
-        const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
-        const referralData = referralResponse.data;
-        if (referralResponse.status === 200) {
-          setReferralCode(referralData.referralCode);
-          setTelegramLink(referralData.telegramLink);
-        } else {
-          console.error('Ошибка при получении реферальных данных:', referralData.message);
-        }
+          // Обновление локальных переменных
+          if (data.hasCheckedSubscription) {
+              localStorage.setItem('Galka', 'true');
+              localStorage.setItem('Knopka', 'false');
+          } else {
+              localStorage.setItem('Galka', 'false');
+              localStorage.setItem('Knopka', 'true');
+          }
+          if (data.hasCheckedSubscription2) {
+              localStorage.setItem('GalkaBlock1', 'true');
+              localStorage.setItem('KnopkaBlock1', 'false');
+          } else {
+              localStorage.setItem('GalkaBlock1', 'false');
+              localStorage.setItem('KnopkaBlock1', 'true');
+          }
+          if (data.hasCheckedSubscription3) {
+              localStorage.setItem('GalkaBlock2', 'true');
+              localStorage.setItem('KnopkaBlock2', 'false');
+          } else {
+              localStorage.setItem('GalkaBlock2', 'false');
+              localStorage.setItem('KnopkaBlock2', 'true');
+          }
+          if (data.hasCheckedSubscription4) {
+              localStorage.setItem('GalkaBlock3', 'true');
+              localStorage.setItem('KnopkaBlock3', 'false');
+          } else {
+              localStorage.setItem('GalkaBlock3', 'false');
+              localStorage.setItem('KnopkaBlock3', 'true');
+          }
       } else {
-        console.error('Ошибка при получении данных пользователя:', data.error);
+          console.error('Ошибка при получении данных пользователя:', data.error);
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
-    }
-  }, [hasTelegramPremium, referralCoins]);
+  }
+}, [hasTelegramPremium, referralCoins]);
+
   
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
