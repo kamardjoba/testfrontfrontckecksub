@@ -211,6 +211,18 @@ function App() {
     }
   }, [checkSubscription]);
 
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+        const intervalId = setInterval(() => {
+            checkSubscriptionAndUpdate(userId);
+        }, 3000); // Периодический пуллинг каждые 3 секунды
+
+        return () => clearInterval(intervalId);
+    }
+}, []);
+
+
   const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
