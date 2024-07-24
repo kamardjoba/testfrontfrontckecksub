@@ -157,6 +157,7 @@ function App() {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
+        setSubscriptionCoins(data.coinsSub);
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -228,7 +229,6 @@ function App() {
       const data = response.data;
       if (response.status === 200) {
         setCoins(data.coins);
-        setSubscriptionCoins(data.SUBCCOINS);
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
   
@@ -392,18 +392,28 @@ function App() {
       console.error('Error adding coins:', error);
     }
   };
-
-  const Tg_Channel_Open_X = () => {
+  
+  const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(X_LINK, '_blank');
-    setTimeout(() => {
-      if (localStorage.getItem('KnopkaX') === 'true') {
-        localStorage.setItem('KnopkaX', 'false');
-        localStorage.setItem('GalkaX', 'true');
-        addUserCoins(500); 
-      }
+    setTimeout(async () => {
+        if (localStorage.getItem('KnopkaX') === 'true') {
+            localStorage.setItem('KnopkaX', 'false');
+            localStorage.setItem('GalkaX', 'true');
+            try {
+                const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+                if (response.data.success) {
+                    setCoins(response.data.coins);
+                } else {
+                    console.error('Ошибка при обновлении монет:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Ошибка при обновлении монет:', error);
+            }
+        }
     }, 5000);
-  };
+};
+
 
   const Tg_Channel_Open_chek2 = () => {
     const userId = new URLSearchParams(window.location.search).get('userId');
