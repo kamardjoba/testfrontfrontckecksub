@@ -427,7 +427,7 @@ function App() {
           <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border'  id='Cryptospace'>
               <div className='rightFlex'>
-                <p id='up'>Тапаем </p>
+                <p id='up'>Тапаем</p>
                 <p id='dp'>Потыкать и стать миллионером!</p>
                 <div className='MenuBtn'>
                   {KnopkaBlock1 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
@@ -444,8 +444,8 @@ function App() {
           <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'  id='Cryptospace'>
               <div className='rightFlex'>
-                <p id='up'>Hamster TapSwap Uzbekistan</p>
-                <p id='dpp'>⚡️ Bu kanalda siz TapSwap va Hamster <br/> Kombat Tezkor Yangiliklarni bilib olasiz</p>
+                <p id='upp'>Hamster TapSwap Uzbekistan</p>
+                <p id='dpp'>Bu kanalda siz TapSwap va Hamster <p> Kombat Tezkor Yangiliklarni bilib olasiz</p></p>
                 <div className='MenuBtn'>
                   {KnopkaBlock2 && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
                   <p> {KnopkaBlock2 && <p id="plus">+</p>}750 $OCTIES</p>
