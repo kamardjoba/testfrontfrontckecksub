@@ -385,7 +385,7 @@ function App() {
       if (localStorage.getItem('KnopkaX') === 'true') {
         localStorage.setItem('KnopkaX', 'false');
         localStorage.setItem('GalkaX', 'true');
-        addUserCoins(500); // Добавляем 500 монет
+        addUserCoins(500); 
       }
     }, 5000);
   };
