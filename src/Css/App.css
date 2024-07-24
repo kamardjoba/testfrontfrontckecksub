@@ -178,6 +178,10 @@ body {
   bottom: 0;
 }
 
+.emojii {
+  margin-left: 1vh;
+}
+
 .MenuBorder button {
   display: flex;
   justify-content: center;
