@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import logo from '../IMG/All_Logo/LBoard.png';
 
-const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'http://srv565792.hstgr.cloud';
 
 const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
   const [leaderboard, setLeaderboard] = useState([]);
