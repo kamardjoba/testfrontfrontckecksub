@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import axios from 'axios';
 
-const Friends = ({ FriendsAnim, invite, referralCode, userId, getRandomColor }) => {
+const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.app';
@@ -22,17 +22,20 @@ const Friends = ({ FriendsAnim, invite, referralCode, userId, getRandomColor }) 
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
-    const handleShareLink = async () => {
-        const telegramId = userId; // Replace with actual user's Telegram ID
-        try {
-          await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, { telegramId, referralCode });
-          window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-        } catch (error) {
-          console.error('Error sending invite:', error);
-        }
-      };
+    app.post('/send-invite', (req, res) => {
+        const { chatId } = req.body;
+        const options = {
+          reply_markup: JSON.stringify({
+            inline_keyboard: [
+              [{ text: 'LAUNCH', url: 'https://t.me/your_bot_username' }]
+            ]
+          })
+        };
       
-
+        bot.sendMessage(chatId, "Meow, lets see who is OG 😺", options)
+          .then(() => res.status(200).send("Invite sent"))
+          .catch(err => res.status(500).send(err.toString()));
+      });
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
