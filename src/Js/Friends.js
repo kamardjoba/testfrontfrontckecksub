@@ -22,13 +22,16 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
+    
+
+
     const handleShareLink = () => {
-        const botLink = 'https://t.me/sub_test_chek_bot'; // Замените на ваше имя бота
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему боту и получай бонусы!')}`;
+        const botLink = telegramLink; // Замените на ваше имя бота
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(botLink)}&text=${encodeURIComponent('Присоединяйся к нашему боту и получай бонусы!')}`;
         window.open(telegramUrl, '_blank');
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
-    
+
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
