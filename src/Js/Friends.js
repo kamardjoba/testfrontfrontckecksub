@@ -22,11 +22,19 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
+  
+
     const handleShareLink = () => {
-        const customLink = `${telegramLink}?ref=${referralCode}`; // Добавление реферального кода к ссылке, если необходимо
-        window.open(customLink, '_blank');
+        const messageText = 'Meow, lets see who is OG 🐱'; // Текст сообщения
+        const referralUrl = telegramLink; // URL для реферальной ссылки
+        
+        // Конкатенация сообщения и ссылки
+        const telegramMessage = `${messageText}\n${referralUrl}`;
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(referralUrl)}&text=${encodeURIComponent(telegramMessage)}`, '_blank');
+        
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
+    
     
 
     return (
