@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import axios from 'axios';
 
-const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
+const Friends = ({ FriendsAnim, invite, referralCode, userId, getRandomColor }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.app';
@@ -23,7 +23,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
     }, [referralCode, getRandomColor]);
 
     const handleShareLink = async () => {
-        const telegramId = 'user_telegram_id'; // Replace with actual user's Telegram ID
+        const telegramId = userId; // Replace with actual user's Telegram ID
         try {
           await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, { telegramId, referralCode });
           window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
