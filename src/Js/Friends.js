@@ -22,20 +22,14 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
-    app.post('/send-invite', (req, res) => {
-        const { chatId } = req.body;
-        const options = {
-          reply_markup: JSON.stringify({
-            inline_keyboard: [
-              [{ text: 'LAUNCH', url: 'https://t.me/your_bot_username' }]
-            ]
-          })
-        };
-      
-        bot.sendMessage(chatId, "Meow, lets see who is OG 😺", options)
-          .then(() => res.status(200).send("Invite sent"))
-          .catch(err => res.status(500).send(err.toString()));
-      });
+    const handleShareLink = () => {
+        const telegramLink = 'https://t.me/sub_test_chek_bot/join'; // URL вашего веб-приложения
+        const message = 'Присоединяйся к нашему приложению и получай бонусы!';
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent(message)}`;
+        window.open(telegramUrl, '_blank');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    };
+    
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
