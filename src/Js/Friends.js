@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import axios from 'axios';
 
-const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
+const Friends = ({ FriendsAnim, invite, referralCode,  getRandomColor, userId }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.app';
