@@ -22,21 +22,12 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
-    const handleShareLink = async () => {
-        try {
-            const response = await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, {
-                telegramLink,
-                referralCode,
-            });
-            if (response.data.success) {
-                window.open(response.data.telegramUrl, '_blank');
-                window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-            } else {
-                console.error('Error sending invite:', response.data.message);
-            }
-        } catch (error) {
-            console.error('Error sending invite:', error);
-        }
+    const handleShareLink = () => {
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Join our app and earn rewards!')}`;
+        const botCommand = `/start ${referralCode}`;
+        const deepLink = `https://t.me/sub_test_chek_bot?start=${referralCode}`;
+        window.open(telegramUrl, '_blank');
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
     
 
