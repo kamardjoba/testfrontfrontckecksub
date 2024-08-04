@@ -22,20 +22,26 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
-  
-
-    const handleShareLink = () => {
-        const messageText = 'Meow, lets see who is OG 🐱'; // Текст сообщения
-        const referralUrl = telegramLink; // URL для реферальной ссылки
-        
-        // Конкатенация сообщения и ссылки
-        const telegramMessage = `${messageText}\n${referralUrl}`;
-        window.open(`https://t.me/share/url?url=${encodeURIComponent(referralUrl)}&text=${encodeURIComponent(telegramMessage)}`, '_blank');
-        
-        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    };
-    
-    
+    const sendInvite = async (referralCode) => {
+        try {
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, {
+            chatId: userId, // ID пользователя Telegram, которому будет отправлено приглашение
+            referralCode
+          });
+      
+          if (response.data.success) {
+            console.log('Сообщение успешно отправлено.');
+          } else {
+            console.error('Ошибка при отправке сообщения:', response.data.message);
+          }
+        } catch (error) {
+          console.error('Ошибка при отправке сообщения:', error);
+        }
+      };
+      
+      const handleShareLink = () => {
+        sendInvite(referralCode);
+      };
 
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
