@@ -23,7 +23,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
     }, [referralCode, getRandomColor]);
 
     const handleShareLink = () => {
-        const referralPageUrl = 'https://glittery-starburst-c29cf3.netlify.app'; // URL вашей промежуточной страницы с мета-тегами
+        const referralPageUrl = 'https://t.me/sub_test_chek_bot'; // URL вашей промежуточной страницы с мета-тегами
         const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(referralPageUrl)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
         window.open(telegramUrl, '_blank');
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
