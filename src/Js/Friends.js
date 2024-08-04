@@ -23,9 +23,8 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
     }, [referralCode, getRandomColor]);
 
     const handleShareLink = () => {
-        const telegramLink = 'https://t.me/sub_test_chek_bot/join'; // URL вашего веб-приложения
-        const message = 'Присоединяйся к нашему приложению и получай бонусы!';
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent(message)}`;
+        const telegramLink = 'https://t.me/sub_test_chek_bot';
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему боту и получай бонусы!')}`;
         window.open(telegramUrl, '_blank');
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
