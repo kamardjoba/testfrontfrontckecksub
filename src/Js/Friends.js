@@ -22,14 +22,16 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
-    const handleShareLink = () => {
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Join our app and earn rewards!')}`;
-        const botCommand = `/start ${referralCode}`;
-        const deepLink = `https://t.me/sub_test_chek_bot?start=${referralCode}`;
-        window.open(telegramUrl, '_blank');
-        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    };
-    
+    const handleShareLink = async () => {
+        const telegramId = 'user_telegram_id'; // Replace with actual user's Telegram ID
+        try {
+          await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, { telegramId, referralCode });
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+        } catch (error) {
+          console.error('Error sending invite:', error);
+        }
+      };
+      
 
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
