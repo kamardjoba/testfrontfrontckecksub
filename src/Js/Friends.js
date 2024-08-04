@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import axios from 'axios';
 
-const Friends = ({ FriendsAnim, invite, referralCode,  getRandomColor, userId }) => {
+const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://testfrontckecksub-production.up.railway.app';
@@ -22,26 +22,23 @@ const Friends = ({ FriendsAnim, invite, referralCode,  getRandomColor, userId })
         fetchReferredUsers();
     }, [referralCode, getRandomColor]);
 
-    const sendInvite = async (referralCode) => {
+    const handleShareLink = async () => {
         try {
-          const response = await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, {
-            chatId: userId, // ID пользователя Telegram, которому будет отправлено приглашение
-            referralCode
-          });
-      
-          if (response.data.success) {
-            console.log('Сообщение успешно отправлено.');
-          } else {
-            console.error('Ошибка при отправке сообщения:', response.data.message);
-          }
+            const response = await axios.post(`${REACT_APP_BACKEND_URL}/send-invite`, {
+                telegramLink,
+                referralCode,
+            });
+            if (response.data.success) {
+                window.open(response.data.telegramUrl, '_blank');
+                window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+            } else {
+                console.error('Error sending invite:', response.data.message);
+            }
         } catch (error) {
-          console.error('Ошибка при отправке сообщения:', error);
+            console.error('Error sending invite:', error);
         }
-      };
-      
-      const handleShareLink = () => {
-        sendInvite(referralCode);
-      };
+    };
+    
 
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
